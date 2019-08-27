@@ -9,8 +9,8 @@ Created on Mon Aug 26 14:37:18 2019
 # importing the dependences to run the application
 from flask import Flask,render_template
 from controllers.ModelController import CycleDB,ParkingDB
+from controllers.QueryController import WanderingRoute
 import json
-import pandas as pd
 from flask import request
 
 
@@ -27,7 +27,6 @@ def create_infra():
     
     
 
-
 @app.route("/clear_table_content",methods=['GET'])
 def migrate_data():
     res = []
@@ -36,6 +35,12 @@ def migrate_data():
     res.append(ParkingDB().clear_table())
     return json.dumps(res)
 
+
+@app.route("/getAllCyclePaths",methods=['POST'])
+def query_data():
+    coordinates = request.get_json().get('coordinates')
+    reponsefromDB = WanderingRoute().findTenCylingPaths(coordinates)
+    return json.dumps(reponsefromDB)
 
 
 if __name__ == "__main__":
