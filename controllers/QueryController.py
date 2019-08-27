@@ -22,7 +22,6 @@ class WanderingRoute:
         
     def findTenCylingPaths(self,coordinates):
         try:
-            coordinates = {"lat":144.942712026961,"long":-37.807355344058,"isParkingBay":True}
             query = """
             SELECT id,geom_path,type,direction,geom_data,MIN(ST_Distance(geom_path, ST_SetSRID(ST_GeogFromText(%s),4326),true)) as min_distance
             	FROM public."CyclePath" 
