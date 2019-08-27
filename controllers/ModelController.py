@@ -10,7 +10,7 @@ Created on Mon Aug 26 17:18:00 2019
 import pandas as pd
 import psycopg2
 import numpy as np
-import re
+
 
 class CycleDB:
     cur = None
