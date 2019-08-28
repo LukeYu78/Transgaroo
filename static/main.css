@@ -27,6 +27,16 @@
 
 }
 
+
+.marker {
+  background-image: url('/static/cycleParking2.png');
+  background-size: cover;
+  width: 40px;
+  height: 40px;
+  border-radius: 35%;
+  cursor: pointer;
+}
+
 .intro-body {
   border-radius: 20px;
   padding: 40px;
