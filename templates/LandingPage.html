@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - Moov</title>
+
+    <script type=text/javascript src="{{url_for('static', filename='jquery.min.js') }}"></script>
+    <script type=text/javascript src = "{{ url_for('static', filename='navigation.js') }}"></script>
+    <meta name="description" content="Provide safer  cycling plans for people living in Melbourne">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin:700">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fontawesome5-overrides.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.css' rel='stylesheet' /> 
+</head>
+
+<body id="page-top">
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.min.js'></script>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.css' type='text/css' />
+    
+    <nav class="navbar navbar-light navbar-expand-md navbar navbar-expand-lg fixed-top" id="mainNav">
+        <div class="container"><a class="navbar-brand js-scroll-trigger" href="#">Moov</a><button data-toggle="collapse" class="navbar-toggler navbar-toggler-right" data-target="#navbarResponsive" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"
+                value="Menu"><i class="fa fa-bars"></i></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item" role="presentation"></li>
+                    <li class="nav-item nav-link js-scroll-trigger" role="presentation"><a class="nav-link active js-scroll-trigger" href="#about"><i class="fas fa-bicycle"></i>Cycling MAP</a></li>
+                    <!--<li class="nav-item nav-link js-scroll-trigger" role="presentation"><a class="nav-link js-scroll-trigger" href="#download"><i class="fas fa-book-reader"></i>Cycling RULES</a></li>
+                    <li class="nav-item nav-link js-scroll-trigger" role="presentation"><a class="nav-link js-scroll-trigger" href="#contact"><i class="far fa-question-circle"></i>Error REport</a></li>-->
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header class="masthead">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <h1 class="text-white brand-heading" style="padding: 20;">MOOV</h1>
+                        <p class="text-white intro-text" style="padding: 20;"><br>Provide Safer cycling schemes for people living in Melbourne.</p><a class="btn btn-link btn-circle" role="button" href="#about"><i class="fa fa-angle-double-down animated"></i></a></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section id="about" class="content-section text-center">
+        <h2>CYCLing MAP</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div></div>
+                    <div class="input-group">
+                        <div class="input-group-prepend"><span id = "geocoder" class="text-light bg-secondary input-group-text">Departure &nbsp;<br></span></div><!--<input id = "searchBox" class="form-control" type="text">-->
+                        <div class="input-group-append"><button id="search" class="btn btn-primary text-light bg-secondary" type="button">Go</button></div>
+                    </div>
+                    <!--<div class="input-group">
+                        <div class="input-group-prepend"><span class="text-light bg-secondary input-group-text">Destination</span></div><input class="form-control" type="text">
+                        <div class="input-group-append"><button class="btn btn-primary text-white bg-secondary" type="button">Go</button></div>
+                    </div>-->
+                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-4"><label class="form-check-label" for="formCheck-4">Shows on street bicycle rails</label></div>
+                    <!--<div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-5"><label class="form-check-label" for="formCheck-5">Shows all bicycle routes &nbsp; &nbsp; &nbsp; &nbsp;</label></div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-6"><label class="form-check-label" for="formCheck-6">Shows the optional path &nbsp; &nbsp; &nbsp; &nbsp;</label></div>-->
+                </div>
+                <div class="col-lg-8 mx-auto">
+                    <div id='map'></div>
+                    <!--<div id='geocoder' class='geocoder'></div>-->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--<section id="download" class="download-section content-section text-center" style="background-image:'{{ url_for('static', filename='downloads-bg.jpg') }}''">
+        <div class="container">
+            <div class="col-lg-8 mx-auto">
+                <h1>CYCLING RULES IN vitoria</h1>
+                <p>Here is traffic rules and GIFs of cycling.</p>
+            </div>
+        </div>
+    </section>
+    <section id="contact" class="content-section text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h2>ERROP REPORT</h2>
+                    <p><br>If you find any errors on the map, please let us know.<br><br></p><button class="btn btn-secondary text-light" type="button">SUBMIT REPORT</button></div>
+            </div>
+        </div>
+    </section>-->
+    <!--<div class="map-clean"><iframe allowfullscreen="" frameborder="0" src="https://www.google.com/maps/embed/v1/place?key=+&amp;q=Paris%2C+France&amp;zoom=15" width="100%" height="450"></iframe></div>-->
+    <footer>
+        <div class="container text-center">
+            <p>Copyright ©&nbsp;Moov 2019 - Transgaroo - Group C26</p>
+        </div>
+    </footer>
+    <script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="{{ url_for('static', filename='grayscale.js') }}"></script>
+</body>
+
+</html>

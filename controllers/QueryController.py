@@ -39,7 +39,7 @@ class WanderingRoute:
             
     def frontEndCompatibleData(self,response,coordinates):
         response_array = []
-        if coordinates["isParkingBay"] == True:
+        if coordinates["isParkingBay"] == "True":
             for each in response:                        
                 coordinate_list = []
                 response_dict = {}

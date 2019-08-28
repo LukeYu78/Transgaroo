@@ -16,6 +16,9 @@ from flask import request
 
 app = Flask(__name__)
 
+@app.route("/")
+def go_home():
+    return render_template("LandingPage.html")
 
 @app.route("/migrate_data",methods=['GET'])
 def create_infra():
@@ -42,6 +45,6 @@ def query_data():
     reponsefromDB = WanderingRoute().findTenCylingPaths(coordinates)
     return json.dumps(reponsefromDB)
 
-
+# need to change the server address to 0.0.0.0 for production.
 if __name__ == "__main__":
     app.run(debug=True)
