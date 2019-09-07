@@ -17,7 +17,7 @@ class CycleDB:
     conn = None
     
     def __init__(self):
-        self.conn = psycopg2.connect("host=localhost dbname=IE-database user=postgres")
+        self.conn = psycopg2.connect("host=localhost:5433 dbname=IE-database user=postgres port=5433")
         self.cur = self.conn.cursor()
         
         
@@ -61,7 +61,7 @@ class ParkingDB:
     conn = None
     
     def __init__(self):
-        self.conn = psycopg2.connect("host=localhost dbname=IE-database user=postgres")
+        self.conn = psycopg2.connect("host=localhost dbname=IE-database user=postgres port=5433")
         self.cur = self.conn.cursor()
         
         
