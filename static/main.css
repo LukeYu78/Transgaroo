@@ -28,7 +28,7 @@
 }
 
 #map { 
-  position:absolute; top:0; bottom:0; width:200%; 
+  position:absolute; top:0; bottom:0; width:100%; 
 }
 .input-group-prepend{
   width: 354px;

@@ -39,35 +39,34 @@ class WanderingRoute:
             
     def frontEndCompatibleData(self,response,coordinates):
         response_array = []
-        if coordinates["isParkingBay"] == "True":
-            for each in response:                        
-                coordinate_list = []
-                response_dict = {}
-                response_dict["id"] = each[0]
-                response_dict["type"] = each[2]
-                response_dict["direction"] = each[3]
-                coord_list = self.getGeomDataFormat(each[4])
-                coordinate_list.append(coord_list)
-                response_dict["geom_data"] = coordinate_list
-                response_dict["distance"] = each[5]
-                parkingBays = self.getParkingBays(each[0])
-                response_dict["parkingBays"] = parkingBays
-                response_array.append(response_dict)
-            print(response_array)    
-            return response_array
-        else:                
-            for each in response:
-                coordinate_list = []
-                response_dict = {}
-                response_dict["id"] = each[0]
-                response_dict["type"] = each[2]
-                response_dict["direction"] = each[3]
-                coord_list = self.getGeomDataFormat(each[4])
-                coordinate_list.append(coord_list)
-                response_dict["geom_data"] = coordinate_list
-                response_dict["distance"] = each[5]
-                response_array.append(response_dict)
+        for each in response:                        
+            coordinate_list = []
+            response_dict = {}
+            response_dict["id"] = each[0]
+            response_dict["type"] = each[2]
+            response_dict["direction"] = each[3]
+            coord_list = self.getGeomDataFormat(each[4])
+            coordinate_list.append(coord_list)
+            response_dict["geom_data"] = coordinate_list
+            response_dict["distance"] = each[5]
+            parkingBays = self.getParkingBays(each[0])
+            response_dict["parkingBays"] = parkingBays
+            response_array.append(response_dict)
+        #print(response_array)    
         return response_array
+#        else:                
+#            for each in response:
+#                coordinate_list = []
+#                response_dict = {}
+#                response_dict["id"] = each[0]
+#                response_dict["type"] = each[2]
+#                response_dict["direction"] = each[3]
+#                coord_list = self.getGeomDataFormat(each[4])
+#                coordinate_list.append(coord_list)
+#                response_dict["geom_data"] = coordinate_list
+#                response_dict["distance"] = each[5]
+#                response_array.append(response_dict)
+#        return response_array
             
     
     def getGeomDataFormat(self,stringData):        
