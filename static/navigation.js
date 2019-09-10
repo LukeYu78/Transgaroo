@@ -10,8 +10,19 @@ $(document).ready(function() {
         });
 
     var geocoder = new MapboxGeocoder({
-        accessToken: mapboxgl.accessToken,
-        mapboxgl: mapboxgl
+          accessToken: mapboxgl.accessToken,
+          countries: 'au',
+          filter: function (item) {
+            // returns true if item contains New South Wales region
+            return item.context.map(function (i) {
+            // id is in the form {index}.{id} per https://github.com/mapbox/carmen/blob/master/carmen-geojson.md
+            // this example attempts to find the `region` named `New South Wales`
+            return (i.id.split('.').shift() === 'region' && i.text === 'Victoria');
+            }).reduce(function (acc, cur) {
+            return acc || cur;
+            });
+          },
+          mapboxgl: mapboxgl
         });
     document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
     
@@ -24,9 +35,20 @@ $(document).ready(function() {
             center: [144.946457, -37.840935],
             zoom: 13
             });      
-          geocoder = new MapboxGeocoder({
-            accessToken: mapboxgl.accessToken,
-            mapboxgl: mapboxgl
+            var geocoder = new MapboxGeocoder({
+              accessToken: mapboxgl.accessToken,
+              countries: 'au',
+              filter: function (item) {
+                // returns true if item contains New South Wales region
+                return item.context.map(function (i) {
+                // id is in the form {index}.{id} per https://github.com/mapbox/carmen/blob/master/carmen-geojson.md
+                // this example attempts to find the `region` named `New South Wales`
+                return (i.id.split('.').shift() === 'region' && i.text === 'Victoria');
+                }).reduce(function (acc, cur) {
+                return acc || cur;
+                });
+              },
+              mapboxgl: mapboxgl
             });
           if($('#formCheck-4').prop('checked')){
             $('#formCheck-4').prop('checked', false);
@@ -41,34 +63,19 @@ $(document).ready(function() {
         alert("Please input a place name before you click GO!!")
       }else{
           let encodedValue = encodeURIComponent($(".mapboxgl-ctrl-geocoder--input").val())
-          console.log(encodedValue);
         $.ajax({
           url: 'https://api.mapbox.com/geocoding/v5/mapbox.places/'+encodedValue+'.json?access_token='+accessToken,
           type: 'GET'
         })
         .done(function(data) {        
-          //console.log(JSON.stringify(data.features[0].center));
           var requestJson = new Object();
           var coordinates = new Object();
           
           coordinates.lat = data.features[0].center[0];
           coordinates.long = data.features[0].center[1];
 
-          // if($('#formCheck-4').is(":checked")){
-          //     coordinates.isParkingBay = "True";
-          // }else{
-          //     coordinates.isParkingBay = "False";
-          // }
-
-
           requestJson.coordinates = coordinates;
           sendRequestToServer(requestJson).then((success)=>{
-            
-            // if($('#formCheck-4').is(":checked")){
-              
-            // }else{
-            //   coordinates.isParkingBay = "False";
-            // } 
             success[0].forEach((item)=>{
               map.addLayer(item);
             });
@@ -104,35 +111,6 @@ $(document).ready(function() {
                 }
               }
             })
-
-
-            // if($('#formCheck-4').is(":checked")){
-            //   success[1].forEach((markers)=>{
-            //     markers.features.forEach((marker)=>{
-            //       var el = document.createElement('div');
-            //       el.className = 'marker';
-
-            //       new mapboxgl.Marker(el)
-            //           .setLngLat(marker.geometry.coordinates)
-            //           .addTo(map);
-            //     })
-            //   })
-            // }
-            // success.forEach((item)=>{
-            //   if(item.type == "FeatureCollection"){
-            //     item.features.forEach((marker)=>{
-            //       var el = document.createElement('div');
-            //       el.className = 'marker';
-
-            //       new mapboxgl.Marker(el)
-            //           .setLngLat(marker.geometry.coordinates)
-            //           .addTo(map);
-            //     });
-            //   }else{
-            //     map.addLayer(item);
-            //   }
-            // })
-            
           },(err)=>{
             console.log(err);
           });
@@ -143,21 +121,6 @@ $(document).ready(function() {
       } 
     });
   })
-
-
-// function plotToMap(map,reponseList){
-//   responseList[0].forEach((item)=>{
-//     map.addLayer(item);
-//   });
-//   $(document).ready(function(){
-//     if($('#formCheck-4').is(":checked")){
-
-//     }
-
-
-//   })
-// }
-
 
 function sendRequestToServer(requestJson){
   var responseList = new Array();
@@ -170,14 +133,6 @@ function sendRequestToServer(requestJson){
       contentType:"application/json; charset=UTF-8"
     })
     .done(function(response) {
-     
-      // if(requestJson.coordinates["isParkingBay"] === "False"){
-      //   var transformedData = preparedataforMap(response);
-      //   resolve(transformedData);
-      // }else{
-      //   var transformedPointData = prepareDataForParking(response);
-      //   resolve(transformedPointData);
-      // }
       preparedataforMap(response).then((processedPathData)=>{
         responseList.push(processedPathData);
         prepareDataForParking(response).then((processedParkingData)=>{
