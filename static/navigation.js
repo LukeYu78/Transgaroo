@@ -43,7 +43,7 @@ $(document).ready(function() {
                 return item.context.map(function (i) {
                 // id is in the form {index}.{id} per https://github.com/mapbox/carmen/blob/master/carmen-geojson.md
                 // this example attempts to find the `region` named `New South Wales`
-                return (i.id.split('.').shift() === 'region' && i.text === 'Victoria');
+                return (i.text === 'Melbourne');
                 }).reduce(function (acc, cur) {
                 return acc || cur;
                 });
