@@ -25,6 +25,19 @@
   margin-left: -130px;
   float: left;
   margin-top: 40px;
+  display: block;
+}
+.form-check label {
+  display: block;
+  padding-right: 10px;
+  padding-left: 22px;
+  text-indent: -22px;
+}
+.form-check input {
+  vertical-align: middle;
+}
+.form-check label span {
+  vertical-align: middle;
 }
 
 #map { 
@@ -39,6 +52,15 @@
 
 .marker {
   background-image: url('/static/parkingLocation.jpg');
+  background-size: cover;
+  width: 40px;
+  height: 40px;
+  border-radius: 35%;
+  cursor: pointer;
+}
+
+.drinking-marker {
+  background-image: url('/static/drinkingImage.png');
   background-size: cover;
   width: 40px;
   height: 40px;

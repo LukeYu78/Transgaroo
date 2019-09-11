@@ -8,18 +8,15 @@ $(document).ready(function() {
         center: [144.946457, -37.840935],
         zoom: 13
         });
-
+    var isNewSearch  = false;
     var geocoder = new MapboxGeocoder({
           accessToken: mapboxgl.accessToken,
           countries: 'au',
           filter: function (item) {
-            // returns true if item contains New South Wales region
             return item.context.map(function (i) {
-            // id is in the form {index}.{id} per https://github.com/mapbox/carmen/blob/master/carmen-geojson.md
-            // this example attempts to find the `region` named `New South Wales`
-            return (i.id.split('.').shift() === 'region' && i.text === 'Victoria');
+              return (i.text === 'Melbourne');
             }).reduce(function (acc, cur) {
-            return acc || cur;
+              return acc || cur;
             });
           },
           mapboxgl: mapboxgl
@@ -28,6 +25,7 @@ $(document).ready(function() {
     
     $(document).ready(function(){
       $("#new-search").on('click',()=>{
+          isNewSearch = true;
           console.log("inside text box empty")
           map = new mapboxgl.Map({
             container: 'map',
@@ -39,20 +37,20 @@ $(document).ready(function() {
               accessToken: mapboxgl.accessToken,
               countries: 'au',
               filter: function (item) {
-                // returns true if item contains New South Wales region
                 return item.context.map(function (i) {
-                // id is in the form {index}.{id} per https://github.com/mapbox/carmen/blob/master/carmen-geojson.md
-                // this example attempts to find the `region` named `New South Wales`
-                return (i.text === 'Melbourne');
+                  return (i.text === 'Melbourne');
                 }).reduce(function (acc, cur) {
-                return acc || cur;
+                  return acc || cur;
                 });
               },
               mapboxgl: mapboxgl
             });
           if($('#formCheck-4').prop('checked')){
             $('#formCheck-4').prop('checked', false);
-          }      
+          }
+          if($('#formCheck-5').prop('checked')){
+            $('#formCheck-5').prop('checked', false);
+          }        
           $('#geocoder').empty();
           $('#geocoder').append(geocoder.onAdd(map));        
       })
@@ -80,30 +78,50 @@ $(document).ready(function() {
               map.addLayer(item);
             });
             if($('#formCheck-4').is(":checked")){
-              success[1].forEach((markers)=>{
-                markers.features.forEach((marker)=>{
-                  var el = document.createElement('div');
-                  el.className = 'marker';
-
-                  new mapboxgl.Marker(el)
-                  .setLngLat(marker.geometry.coordinates)
-                  .addTo(map);
-                })
-              })
-            }
-            
-            $('#formCheck-4').on('change',()=>{
-              if($('#formCheck-4').is(":checked")){
                 success[1].forEach((markers)=>{
                   markers.features.forEach((marker)=>{
                     var el = document.createElement('div');
                     el.className = 'marker';
-
+  
                     new mapboxgl.Marker(el)
                     .setLngLat(marker.geometry.coordinates)
                     .addTo(map);
                   })
                 })
+            }
+            if($('#formCheck-5').is(":checked")){
+                success[2].forEach((markers)=>{
+                  markers.features.forEach((marker)=>{
+                    var el = document.createElement('div');
+                    el.className = 'drinking-marker';
+  
+                    new mapboxgl.Marker(el)
+                    .setLngLat(marker.geometry.coordinates)
+                    .addTo(map);
+                  })
+                })
+            }
+            
+            $('#formCheck-4').on('change',()=>{
+              if($('#formCheck-4').is(":checked")){
+                if($(".mapboxgl-ctrl-geocoder--input").val() == ""){
+                  alert("Please input a place name before you click GO!!")
+                }else{
+                  if(!isNewSearch){
+                    success[1].forEach((markers)=>{
+                      markers.features.forEach((marker)=>{
+                        var el = document.createElement('div');
+                        el.className = 'marker';
+    
+                        new mapboxgl.Marker(el)
+                        .setLngLat(marker.geometry.coordinates)
+                        .addTo(map);
+                      })
+                    })
+                  }else{
+                    success[1] = null;
+                  }
+                }
               }else{
                 let markers = document.getElementsByClassName("marker");
                 for (let i = 0; i < markers.length; i++) {
@@ -111,6 +129,35 @@ $(document).ready(function() {
                 }
               }
             })
+
+            $('#formCheck-5').on('change',()=>{
+              if($('#formCheck-5').is(":checked")){
+                if($(".mapboxgl-ctrl-geocoder--input").val() == ""){
+                  alert("Please input a place name before you click GO!!")
+                }else{
+                  if(!isNewSearch){
+                    success[2].forEach((markers)=>{
+                      markers.features.forEach((marker)=>{
+                        var el = document.createElement('div');
+                        el.className = 'drinking-marker';
+    
+                        new mapboxgl.Marker(el)
+                        .setLngLat(marker.geometry.coordinates)
+                        .addTo(map);
+                      })
+                    })
+                  }else{
+                    success[2] = null;
+                  }
+                }
+              }else{
+                let markers = document.getElementsByClassName("drinking-marker");
+                for (let i = 0; i < markers.length; i++) {
+                    markers[i].style.visibility = "hidden";
+                }
+              }
+            })
+            
           },(err)=>{
             console.log(err);
           });
@@ -137,7 +184,13 @@ function sendRequestToServer(requestJson){
         responseList.push(processedPathData);
         prepareDataForParking(response).then((processedParkingData)=>{
           responseList.push(processedParkingData);
-          resolve(responseList);
+          prepareDataForDrinkingFountain(response).then((processFountainData)=>{
+            responseList.push(processFountainData);
+            resolve(responseList);
+          },(err)=>{
+            console.err(err);
+            reject(err);  
+          });
         },(err)=>{
           console.err(err);
           reject(err);
@@ -236,4 +289,41 @@ function prepareDataForParking(response){
         reject(error); 
       }
     });
+}
+
+function prepareDataForDrinkingFountain(response){
+  return new Promise((resolve,reject)=>{
+    try {
+        var multiPointData = new Array();
+    
+        response.forEach((element) => {
+          var overallObj = new Object();
+          var features = new Array();
+          element.drinkingFountains.forEach((eachDrinking)=>{
+            var properties = new Object();
+            var geometry = new Object();
+            var innerObj = new Object();
+      
+            geometry.coordinates = eachDrinking.coordinates;
+            geometry.type = "Point";
+      
+            properties.title = "drinkingLocation";
+            properties.description = "CityOFMelbourne";
+      
+            innerObj.type = "Feature";
+            innerObj.geometry = geometry;
+            innerObj.properties = properties; 
+      
+            features.push(innerObj);
+          })
+          overallObj.type = "FeatureCollection";
+          overallObj.features = features;
+          multiPointData.push(overallObj);
+        });
+        resolve(multiPointData);
+      } catch (error) {
+        console.error(error);
+        reject(error); 
+      }
+    }); 
 }
