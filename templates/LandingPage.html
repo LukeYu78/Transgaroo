@@ -5,25 +5,25 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Home - Moov</title>
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.css' rel='stylesheet' />
+
     <script type=text/javascript src="{{url_for('static', filename='jquery.min.js') }}"></script>
     <script type=text/javascript src = "{{ url_for('static', filename='navigation.js') }}"></script>
     <meta name="description" content="Provide safer  cycling plans for people living in Melbourne">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin:700">
-    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='fontawesome-all.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='fontawesome5-overrides.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
-    <!-- <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.css' rel='stylesheet' />  -->
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.css' rel='stylesheet' /> 
 </head>
 
 <body id="page-top">
-        <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.min.js'></script>
-        <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.css' type='text/css' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.min.js'></script>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.css' type='text/css' />
+    
     <nav class="navbar navbar-light navbar-expand-md navbar navbar-expand-lg fixed-top" id="mainNav">
         <div class="container"><a class="navbar-brand js-scroll-trigger" href="#">Moov</a><button data-toggle="collapse" class="navbar-toggler navbar-toggler-right" data-target="#navbarResponsive" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"
                 value="Menu"><i class="fa fa-bars"></i></button>
@@ -55,30 +55,16 @@
                 <div class="col">
                     <div></div>
                     <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span id = "dep-text">Departure &nbsp;<br></span>
-                            <span id = "geocoder" class="text-light bg-secondary input-group-text"></span>
-                        </div>
+                        <div class="input-group-prepend"><span id = "geocoder" class="text-light bg-secondary input-group-text">Departure &nbsp;<br></span></div><!--<input id = "searchBox" class="form-control" type="text">-->
                         <div class="input-group-append"><button id="search" class="btn btn-primary text-light bg-secondary" type="button">Go</button></div>
-                        <div class="input-group-append"><button id="new-search" class="btn btn-primary text-light bg-secondary" type="button">New search</button></div>
                     </div>
-                    <form>
-                        <div class="form-check">
-                            <label for="formCheck-4"><input type="checkbox" id="formCheck-4" /> <span>Show on street Bicycle rails</span></label>
-                            <label for="formCheck-5"><input type="checkbox" id="formCheck-5" /> <span>Show on street Drinking Fountains</span></label>
-                            <!-- <label for="z"><input type="checkbox" id="z" /> <span>Label text z</span></label> -->
-                        </div>
-                    </form>
-                    <!-- <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="formCheck-4">
-                        <label class="form-check-label" for="formCheck-4">Shows on street bicycle rails</label>
-                        <input class="form-check-input" type="checkbox" id="formCheck-2">
-                        <label class="form-check-label" for="formCheck-4">Shows Drinking Fountains</label>
-                    </div> -->
-                    <!-- <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="formCheck-2">
-                        <label class="form-check-label" for="formCheck-4">Shows Drinking Fountains</label>
-                    </div> -->
+                    <!--<div class="input-group">
+                        <div class="input-group-prepend"><span class="text-light bg-secondary input-group-text">Destination</span></div><input class="form-control" type="text">
+                        <div class="input-group-append"><button class="btn btn-primary text-white bg-secondary" type="button">Go</button></div>
+                    </div>-->
+                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-4"><label class="form-check-label" for="formCheck-4">Shows on street bicycle rails</label></div>
+                    <!--<div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-5"><label class="form-check-label" for="formCheck-5">Shows all bicycle routes &nbsp; &nbsp; &nbsp; &nbsp;</label></div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-6"><label class="form-check-label" for="formCheck-6">Shows the optional path &nbsp; &nbsp; &nbsp; &nbsp;</label></div>-->
                 </div>
                 <div class="col-lg-8 mx-auto">
                     <div id='map'></div>
