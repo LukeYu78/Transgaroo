@@ -17,7 +17,7 @@ class CycleDB:
     conn = None
     
     def __init__(self):
-        self.conn = psycopg2.connect("host=localhost dbname=IE-database user=postgres")
+        self.conn = psycopg2.connect("host=localhost dbname=IE-database user=postgres port=5433")
         self.cur = self.conn.cursor()
         
         
@@ -61,7 +61,7 @@ class ParkingDB:
     conn = None
     
     def __init__(self):
-        self.conn = psycopg2.connect("host=localhost dbname=IE-database user=postgres")
+        self.conn = psycopg2.connect("host=localhost dbname=IE-database user=postgres port=5433")
         self.cur = self.conn.cursor()
         
         
@@ -81,7 +81,7 @@ class ParkingDB:
     def read_data(self):
         cycle_park_data = pd.read_csv("./data/Cycle_Parking_spots.csv")
         required_columns_df = cycle_park_data[['GIS_ID','ASSET_TYPE','CoordinateLocation']]
-        required_columns_df = required_columns_df[required_columns_df['ASSET_TYPE'] == 'Bicycle Rails']
+        required_columns_df = required_columns_df[required_columns_df['ASSET_TYPE'].isin(['Bicycle Rails','Drinking Fountain'])]
         lat = []
         long = []
         coordlocation = []
@@ -116,3 +116,4 @@ class ParkingDB:
         self.conn.commit()
         self.cur.close()
         self.conn.close()
+

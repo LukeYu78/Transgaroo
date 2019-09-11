@@ -16,7 +16,7 @@ class WanderingRoute:
     conn = None
     
     def __init__(self):
-       self.conn = psycopg2.connect("host=localhost dbname=IE-database user=postgres")
+       self.conn = psycopg2.connect("host=localhost dbname=IE-database user=postgres port=5433")
        self.cur = self.conn.cursor()
         
         
@@ -39,34 +39,21 @@ class WanderingRoute:
             
     def frontEndCompatibleData(self,response,coordinates):
         response_array = []
-        if coordinates["isParkingBay"] == "True":
-            for each in response:                        
-                coordinate_list = []
-                response_dict = {}
-                response_dict["id"] = each[0]
-                response_dict["type"] = each[2]
-                response_dict["direction"] = each[3]
-                coord_list = self.getGeomDataFormat(each[4])
-                coordinate_list.append(coord_list)
-                response_dict["geom_data"] = coordinate_list
-                response_dict["distance"] = each[5]
-                parkingBays = self.getParkingBays(each[0])
-                response_dict["parkingBays"] = parkingBays
-                response_array.append(response_dict)
-            print(response_array)    
-            return response_array
-        else:                
-            for each in response:
-                coordinate_list = []
-                response_dict = {}
-                response_dict["id"] = each[0]
-                response_dict["type"] = each[2]
-                response_dict["direction"] = each[3]
-                coord_list = self.getGeomDataFormat(each[4])
-                coordinate_list.append(coord_list)
-                response_dict["geom_data"] = coordinate_list
-                response_dict["distance"] = each[5]
-                response_array.append(response_dict)
+        for each in response:                        
+            coordinate_list = []
+            response_dict = {}
+            response_dict["id"] = each[0]
+            response_dict["type"] = each[2]
+            response_dict["direction"] = each[3]
+            coord_list = self.getGeomDataFormat(each[4])
+            coordinate_list.append(coord_list)
+            response_dict["geom_data"] = coordinate_list
+            response_dict["distance"] = each[5]
+            parkingBays = self.getParkingBays(each[0])
+            response_dict["parkingBays"] = parkingBays
+            drinkingFountainLocations = self.getDrinkingFountains(each[0])
+            response_dict["drinkingFountains"] = drinkingFountainLocations
+            response_array.append(response_dict)
         return response_array
             
     
@@ -81,10 +68,29 @@ class WanderingRoute:
 
 
     def getParkingBays(self,path_id):
-        query = """SELECT public."CycleParkLocation".*
-        	FROM public."CycleParkLocation" INNER JOIN public."CyclePath" 
-        	ON ST_DWithin(public."CycleParkLocation".geom_location, public."CyclePath".geom_path, 0.01) where public."CyclePath".id = %s limit 20;
+        query = """SELECT cl.*
+                FROM public."CycleParkLocation" cl INNER JOIN public."CyclePath" cp 
+                ON ST_DWithin(cl.geom_location, cp.geom_path, 0.01) where cp.id = %s and cl.asset_type='Bicycle Rails' limit 20;
         """
+        self.cur.execute(query,[path_id])
+        records = self.cur.fetchall()
+        parkingBays = []
+        for each in records:
+            parkingDict = {}
+            parkinglocation = []
+            parkingDict["GS_ID"] = each[0]
+            parkingDict["type"] = each[1]
+            parkinglocation.append(each[2])
+            parkinglocation.append(each[3])
+            parkingDict["coordinates"] = parkinglocation
+            parkingBays.append(parkingDict)
+        return parkingBays
+    
+    
+    def getDrinkingFountains(self,path_id):
+        query = """SELECT cl.*
+                FROM public."CycleParkLocation" cl INNER JOIN public."CyclePath" cp 
+                ON ST_DWithin(cl.geom_location, cp.geom_path, 0.01) where cp.id = %s and cl.asset_type='Drinking Fountain' limit 10;"""
         self.cur.execute(query,[path_id])
         records = self.cur.fetchall()
         parkingBays = []
