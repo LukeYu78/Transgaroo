@@ -50,7 +50,10 @@ $(document).ready(function() {
           }
           if($('#formCheck-5').prop('checked')){
             $('#formCheck-5').prop('checked', false);
-          }        
+          }
+          if($('#formCheck-6').prop('checked')){
+            $('#formCheck-6').prop('checked', false);
+          }          
           $('#geocoder').empty();
           $('#geocoder').append(geocoder.onAdd(map));        
       })
@@ -60,6 +63,7 @@ $(document).ready(function() {
       if($(".mapboxgl-ctrl-geocoder--input").val() == ""){
         alert("Please input a place name before you click GO!!")
       }else{
+          isNewSearch = false;
           let encodedValue = encodeURIComponent($(".mapboxgl-ctrl-geocoder--input").val())
         $.ajax({
           url: 'https://api.mapbox.com/geocoding/v5/mapbox.places/'+encodedValue+'.json?access_token='+accessToken,
@@ -68,7 +72,8 @@ $(document).ready(function() {
         .done(function(data) {        
           var requestJson = new Object();
           var coordinates = new Object();
-          
+
+          console.log(data);
           coordinates.lat = data.features[0].center[0];
           coordinates.long = data.features[0].center[1];
 
@@ -101,6 +106,19 @@ $(document).ready(function() {
                   })
                 })
             }
+
+            if($('#formCheck-6').is(":checked")){
+              success[3].forEach((markers)=>{
+                markers.features.forEach((marker)=>{
+                  var el = document.createElement('div');
+                  el.className = 'crash-marker';
+
+                  new mapboxgl.Marker(el)
+                  .setLngLat(marker.geometry.coordinates)
+                  .addTo(map);
+                })
+              })
+          }
             
             $('#formCheck-4').on('change',()=>{
               if($('#formCheck-4').is(":checked")){
@@ -157,7 +175,34 @@ $(document).ready(function() {
                 }
               }
             })
-            
+
+            $('#formCheck-6').on('change',()=>{
+              if($('#formCheck-6').is(":checked")){
+                if($(".mapboxgl-ctrl-geocoder--input").val() == ""){
+                  alert("Please input a place name before you click GO!!")
+                }else{
+                  if(!isNewSearch){
+                    success[3].forEach((markers)=>{
+                      markers.features.forEach((marker)=>{
+                        var el = document.createElement('div');
+                        el.className = 'crash-marker';
+    
+                        new mapboxgl.Marker(el)
+                        .setLngLat(marker.geometry.coordinates)
+                        .addTo(map);
+                      })
+                    })
+                  }else{
+                    success[3] = null;
+                  }
+                }
+              }else{
+                let markers = document.getElementsByClassName("crash-marker");
+                for (let i = 0; i < markers.length; i++) {
+                    markers[i].style.visibility = "hidden";
+                }
+              }
+            })
           },(err)=>{
             console.log(err);
           });
@@ -186,7 +231,13 @@ function sendRequestToServer(requestJson){
           responseList.push(processedParkingData);
           prepareDataForDrinkingFountain(response).then((processFountainData)=>{
             responseList.push(processFountainData);
-            resolve(responseList);
+            prepareDataForCrashHotspots(response).then((processedCrashData)=>{
+              responseList.push(processedCrashData);
+              resolve(responseList);
+            },(err)=>{
+              console.err(err);
+              reject(err);  
+            });
           },(err)=>{
             console.err(err);
             reject(err);  
@@ -319,6 +370,48 @@ function prepareDataForDrinkingFountain(response){
           overallObj.type = "FeatureCollection";
           overallObj.features = features;
           multiPointData.push(overallObj);
+        });
+        resolve(multiPointData);
+      } catch (error) {
+        console.error(error);
+        reject(error); 
+      }
+    }); 
+}
+
+function prepareDataForCrashHotspots(response){
+  return new Promise((resolve,reject)=>{
+    try {
+        var multiPointData = new Array();
+    
+        response.forEach((element) => {
+          var overallObj = new Object();
+          var features = new Array();
+          if(element.cycleCrashHotspots.length == 0){
+            var crashData = new Object();
+            multiPointData.push(crashData);
+          }else{
+            element.cycleCrashHotspots.forEach((eachCrash)=>{
+              var properties = new Object();
+              var geometry = new Object();
+              var innerObj = new Object();
+        
+              geometry.coordinates = eachCrash.coordinates;
+              geometry.type = "Point";
+        
+              properties.title = "crashHotspot";
+              properties.description = "CityOFMelbourne";
+        
+              innerObj.type = "Feature";
+              innerObj.geometry = geometry;
+              innerObj.properties = properties; 
+        
+              features.push(innerObj);
+            })
+            overallObj.type = "FeatureCollection";
+            overallObj.features = features;
+            multiPointData.push(overallObj);
+          }
         });
         resolve(multiPointData);
       } catch (error) {

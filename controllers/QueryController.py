@@ -53,6 +53,8 @@ class WanderingRoute:
             response_dict["parkingBays"] = parkingBays
             drinkingFountainLocations = self.getDrinkingFountains(each[0])
             response_dict["drinkingFountains"] = drinkingFountainLocations
+            cycle_crash_spots = self.getCrashHotspots(each[0])
+            response_dict["cycleCrashHotspots"] = cycle_crash_spots
             response_array.append(response_dict)
         return response_array
             
@@ -93,17 +95,40 @@ class WanderingRoute:
                 ON ST_DWithin(cl.geom_location, cp.geom_path, 0.01) where cp.id = %s and cl.asset_type='Drinking Fountain' limit 10;"""
         self.cur.execute(query,[path_id])
         records = self.cur.fetchall()
-        parkingBays = []
+        drinkingFountains = []
         for each in records:
-            parkingDict = {}
-            parkinglocation = []
-            parkingDict["GS_ID"] = each[0]
-            parkingDict["type"] = each[1]
-            parkinglocation.append(each[2])
-            parkinglocation.append(each[3])
-            parkingDict["coordinates"] = parkinglocation
-            parkingBays.append(parkingDict)
-        return parkingBays
+            drinkingDict = {}
+            drinkingLocation = []
+            drinkingDict["GS_ID"] = each[0]
+            drinkingDict["type"] = each[1]
+            drinkingLocation.append(each[2])
+            drinkingLocation.append(each[3])
+            drinkingDict["coordinates"] = drinkingLocation
+            drinkingFountains.append(drinkingDict)
+        return drinkingFountains
+    
+    
+    
+    def getCrashHotspots(self,path_id):
+        query = """SELECT chp.*
+                FROM public."CrashHotspots" chp INNER JOIN public."CyclePath" cp 
+                ON ST_DWithin(chp.geom_location, cp.geom_path,0.0001) where cp.id = %s limit 20;"""
+        self.cur.execute(query,[path_id])
+        records = self.cur.fetchall()
+        crash_hotspots = []
+        if len(records) == 0:
+            return crash_hotspots
+        for each in records:
+            crashDict = {}
+            crashLocation = []
+            crashDict["objectId"] = each[0]
+            crashDict["accident_time"] = each[3]
+            crashDict["bicyclist"] = each[5]
+            crashLocation.append(each[1])
+            crashLocation.append(each[2])
+            crashDict["coordinates"] = crashLocation
+            crash_hotspots.append(crashDict)
+        return crash_hotspots
     
     
     def close_connection(self):
