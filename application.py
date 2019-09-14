@@ -8,7 +8,7 @@ Created on Mon Aug 26 14:37:18 2019
 
 # importing the dependences to run the application
 from flask import Flask,render_template
-from controllers.ModelController import CycleDB,ParkingDB
+from controllers.ModelController import CycleDB,ParkingDB,HotspotDB
 from controllers.QueryController import WanderingRoute
 import json
 from flask import request
@@ -26,6 +26,7 @@ def create_infra():
     print("Migrating cycle path data ....")
     res.append(CycleDB().migrate_data_to_db())
     res.append(ParkingDB().migrate_data_to_db())
+    res.append(HotspotDB().migrate_data_to_db())
     return json.dumps(res)
     
     
@@ -36,6 +37,7 @@ def migrate_data():
     print("Clearing all the content cycle path data ....")
     res.append(CycleDB().clear_table())
     res.append(ParkingDB().clear_table())
+    res.append(HotspotDB().clear_table())
     return json.dumps(res)
 
 
