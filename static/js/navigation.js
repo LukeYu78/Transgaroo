@@ -8,7 +8,6 @@ $(document).ready(function() {
         center: [144.946457, -37.840935],
         zoom: 13
         });
-//    var isNewSearch  = false;
     var responseFromServer = new Array();
     var cyclePath = new Array();
     var parkingLocations = new Array();
@@ -26,6 +25,7 @@ $(document).ready(function() {
           },
           mapboxgl: mapboxgl
         });
+
     document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
     
     $(document).ready(function(){
