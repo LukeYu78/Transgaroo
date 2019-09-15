@@ -69,11 +69,11 @@
 }
 
 .crash-marker {
-  background-image: url('/static/crash_image.png');
+  background-image: url('/static/bike_accident.png');
   background-size: cover;
-  width: 40px;
-  height: 40px;
-  border-radius: 35%;
+  width: 60px;
+  height: 60px;
+  border-radius: 5%;
   cursor: pointer;
 }
 
