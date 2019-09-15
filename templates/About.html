@@ -5,25 +5,25 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>5</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
-    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
-    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="../static/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="../static/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/fonts/fontawesome5-overrides.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Actor">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bree+Serif">
-    <link rel="stylesheet" href="assets/css/back-to-top-button.css">
-    <link rel="stylesheet" href="assets/css/Contact-Form-Clean.css">
-    <link rel="stylesheet" href="assets/css/Dark-NavBar-1.css">
-    <link rel="stylesheet" href="assets/css/Dark-NavBar-2.css">
-    <link rel="stylesheet" href="assets/css/Dark-NavBar.css">
-    <link rel="stylesheet" href="assets/css/gradient-navbar-1.css">
-    <link rel="stylesheet" href="assets/css/gradient-navbar.css">
+    <link rel="stylesheet" href="../static/css/back-to-top-button.css">
+    <link rel="stylesheet" href="../static/css/Contact-Form-Clean.css">
+    <link rel="stylesheet" href="../static/css/Dark-NavBar-1.css">
+    <link rel="stylesheet" href="../static/css/Dark-NavBar-2.css">
+    <link rel="stylesheet" href="../static/css/Dark-NavBar.css">
+    <link rel="stylesheet" href="../static/css/gradient-navbar-1.css">
+    <link rel="stylesheet" href="../static/css/gradient-navbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/Navigation-Clean.css">
-    <link rel="stylesheet" href="assets/css/Simple-Slider.css">
+    <link rel="stylesheet" href="../static/css/main.css">
+    <link rel="stylesheet" href="../static/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="../static/css/Simple-Slider.css">
 </head>
 
 <body>
@@ -33,12 +33,12 @@
                 class="collapse navbar-collapse" id="navcol-1">
                 <div class="card"></div>
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation" href="index.html" style="font-size: 18px;"><a class="nav-link" style="color:#ffffff;" href="index.html"><i class="fa fa-home"></i> Home</a></li>
-                    <li class="nav-item" role="presentation" style="font-size: 18px;"><a class="nav-link" style="color:#ffffff;" href="#MMap"><i class="far fa-map"></i> Cycling Map</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" style="color: #ffffff;font-size: 18px;" href="Rules.html"><i class="fa fa-book"></i> Rules</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" style="color: #ffffff;font-size: 18px;" href="Contact.html"><i class="fa fa-phone-square"></i> Contact</a></li>
-                    <li class="nav-item" role="presentation" style="font-size: 18px;"><a class="nav-link" style="color:#ffffff;" href="About.html"><i class="fa fa-user"></i> About us</a></li>
-                    <li class="nav-item" role="presentation"></li>
+                    <li class="nav-item" role="presentation" href="{ url_for('go_home') }}" style="font-size: 18px;"><a class="nav-link" style="color:#ffffff;" href="{{ url_for('go_home') }}"><i class="fa fa-home"></i> Home</a></li>
+                        <li class="nav-item" role="presentation" style="font-size: 18px;"><a class="nav-link" style="color:#ffffff;" href="#MMap"><i class="far fa-map"></i> Cycling Map</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" style="color: #ffffff;font-size: 18px;" href="{{ url_for('rules') }}"><i class="fa fa-book"></i>&nbsp;Rules</a></li>
+                        <li class="nav-item" role="presentation" style="font-size: 18px;"><a class="nav-link" style="color:#ffffff;" href="{{ url_for('contacts') }}"><i class="fa fa-phone-square"></i>&nbsp;Contact</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" style="color:#ffffff;font-size:18px" href="{{ url_for('go_about_us') }}"><i class="fa fa-user"></i> About us</a></li>
+                        <li class="nav-item" role="presentation"></li>
                 </ul>
         </div>
         </div>
@@ -56,22 +56,22 @@
     <div>
         <div class="container">
             <div class="row">
-                <div class="col-md-3 text-center"><img src="assets/img/11.png">
+                <div class="col-md-3 text-center"><img src="../static/images/11.png">
                     <p>Girish</p>
                     <p style="font-size: 14px;">Master of Data Science<br></p>
                     <p> He is confident about solving problems as well as learning new things<br></p>
                 </div>
-                <div class="col-md-3 text-center"><img src="assets/img/44.png">
+                <div class="col-md-3 text-center"><img src="../static/images/44.png">
                     <p>Luke Yu<br></p>
                     <p style="font-size: 14px;">Master of Information Technology<br></p>
                     <p> He is good at finding the fastest way to solve problems and sharing with teammates, a good listener and does well in the algorithm. <br></p>
                 </div>
-                <div class="col-md-3 text-center"><img src="assets/img/33.png">
+                <div class="col-md-3 text-center"><img src="../static/images/33.png">
                     <p>Na Tao<br></p>
                     <p style="font-size: 14px;">Master of Information Technology<br></p>
                     <p>She is good at working with team members. For skills to benefit the team, she does well in data analysis and documents.<br></p>
                 </div>
-                <div class="col-md-3 text-center"><img src="assets/img/22.png">
+                <div class="col-md-3 text-center"><img src="../static/images/22.png">
                     <p>Xuhao Jin<br></p>
                     <p style="font-size: 14px;">Master of Business Information System<br></p>
                     <p>He does well in taking notes and cooperating with team members<br></p>
@@ -81,17 +81,17 @@
     </div>
     <footer class="page-footer">
         <div class="container" style="font-family: 'Bree Serif', serif;">
-            <div class="links"><a href="About.html">About us</a><a href="Contact.html">Contact us</a></div>
+            <div class="links"><a href="{{ url_for('static', filename='About.html') }}">About us</a><a href="{{ url_for('static', filename='Contact.html') }}">Contact us</a></div>
         </div>
     </footer>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/back-to-top-button.js"></script>
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../static/js/back-to-top-button.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
-    <script src="assets/js/printThis.js"></script>
-    <script src="assets/js/Simple-Slider.js"></script>
-    <script src="assets/js/theme.js"></script>
+    <script src="../static/js/printThis.js"></script>
+    <script src="../static/js/Simple-Slider.js"></script>
+    <script src="../static/js/theme.js"></script>
 </body>
 
 </html>

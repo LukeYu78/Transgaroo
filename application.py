@@ -7,7 +7,7 @@ Created on Mon Aug 26 14:37:18 2019
 """
 
 # importing the dependences to run the application
-from flask import Flask,render_template
+from flask import Flask,render_template,url_for
 from controllers.ModelController import CycleDB,ParkingDB,HotspotDB
 from controllers.QueryController import WanderingRoute
 import json
@@ -19,6 +19,21 @@ app = Flask(__name__)
 @app.route("/")
 def go_home():
     return render_template("index.html")
+
+@app.route("/about_us")
+def go_about_us():
+    return render_template("About.html")
+
+@app.route("/rules")
+def rules():
+    return render_template("Rules.html")
+
+@app.route("/contact")
+def contacts():
+    return render_template("Contact.html")
+
+
+
 
 @app.route("/migrate_data",methods=['GET'])
 def create_infra():

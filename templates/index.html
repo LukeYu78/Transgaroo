@@ -53,11 +53,11 @@
                 <div
                     class="collapse navbar-collapse" id="navcol-1">
                     <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item" role="presentation" href="index.html" style="font-size: 18px;"><a class="nav-link" style="color:#ffffff;" href="index.html"><i class="fa fa-home"></i> Home</a></li>
+                        <li class="nav-item" role="presentation" href="{ url_for('go_home') }}" style="font-size: 18px;"><a class="nav-link" style="color:#ffffff;" href="{{ url_for('go_home') }}"><i class="fa fa-home"></i> Home</a></li>
                         <li class="nav-item" role="presentation" style="font-size: 18px;"><a class="nav-link" style="color:#ffffff;" href="#MMap"><i class="far fa-map"></i> Cycling Map</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" style="color: #ffffff;font-size: 18px;" href="../templates/Rules.html"><i class="fa fa-book"></i>&nbsp;Rules</a></li>
-                        <li class="nav-item" role="presentation" style="font-size: 18px;"><a class="nav-link" style="color:#ffffff;" href="../templates/Contact.html"><i class="fa fa-phone-square"></i>&nbsp;Contact</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" style="color:#ffffff;font-size:18px" href="../templates/About.html"><i class="fa fa-user"></i> About us</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" style="color: #ffffff;font-size: 18px;" href="{{ url_for('rules') }}"><i class="fa fa-book"></i>&nbsp;Rules</a></li>
+                        <li class="nav-item" role="presentation" style="font-size: 18px;"><a class="nav-link" style="color:#ffffff;" href="{{ url_for('contacts') }}"><i class="fa fa-phone-square"></i>&nbsp;Contact</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" style="color:#ffffff;font-size:18px" href="{{ url_for('go_about_us') }}"><i class="fa fa-user"></i> About us</a></li>
                         <li class="nav-item" role="presentation"></li>
                     </ul>
             </div>
