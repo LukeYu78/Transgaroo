@@ -18,7 +18,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def go_home():
-    return render_template("LandingPage.html")
+    return render_template("index.html")
 
 @app.route("/migrate_data",methods=['GET'])
 def create_infra():
