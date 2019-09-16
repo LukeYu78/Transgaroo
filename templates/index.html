@@ -60,7 +60,7 @@
                     class="collapse navbar-collapse" id="navcol-1">
                     <ul class="nav navbar-nav ml-auto">
                         <li class="nav-item" role="presentation" href="{ url_for('go_home') }}" style="font-size: 18px;"><a class="nav-link" style="color:#ffffff;" href="{{ url_for('go_home') }}"><i class="fa fa-home"></i> Home</a></li>
-                        <li class="nav-item" role="presentation" style="font-size: 18px;"><a class="nav-link" style="color:#ffffff;" href="#MMap"><i class="far fa-map"></i> Cycling Map</a></li>
+                        <li class="nav-item" role="presentation" style="font-size: 18px;"><a class="nav-link" style="color:#ffffff;" href="{{ url_for('cycling_map') }}"><i class="far fa-map"></i> Cycling Map</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" style="color: #ffffff;font-size: 18px;" href="{{ url_for('rules') }}"><i class="fa fa-book"></i>&nbsp;Rules</a></li>
                         <li class="nav-item" role="presentation" style="font-size: 18px;"><a class="nav-link" style="color:#ffffff;" href="{{ url_for('contacts') }}"><i class="fa fa-phone-square"></i>&nbsp;Contact</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" style="color:#ffffff;font-size:18px" href="{{ url_for('go_about_us') }}"><i class="fa fa-user"></i> About us</a></li>
@@ -110,51 +110,6 @@
             </div>
         </section>
     </main>
-    <section>
-        <section class="clean-block clean-info dark" style="font-family: 'Bree Serif', serif;">
-            <div class="container" style="font-family: 'Bree Serif', serif;">
-                <div class="block-heading" style="font-family: 'Bree Serif', serif;width: 986px;margin-left: 20px;"><p style="color: rgb(255,208,40);font-size: 47px;" id="MMap">Cycling Map</p></div>
-                <div class="row text-left align-items-start">
-                    <div class="col-md-6" style="width: 500px;">
-                        <p style="color: rgb(0,0,0);margin-bottom: 15px;margin-left: 0;width: 339px;">Input the place in the city of Melbourne</p>
-                        <div style="display:inline;float:left"><span id = 'geocoder'></span></div>
-                        <div><button class="btn btn-primary" type="button" style="margin-left: 50px;">Check</button></div>
-                        <div
-                            class="form-check" style="width: 350px;margin-left: 20px;"><input class="form-check-input" type="checkbox" id="formCheck-2"><label class="form-check-label" for="formCheck-2">Bicycle Lanes<br></label></div>
-                    <div class="form-check" style="width: 350px;margin-left: 20px;"><input class="form-check-input" type="checkbox" id="formCheck-2"><label class="form-check-label" for="formCheck-2">Bicycle Rails<br></label></div>
-                    <div class="form-check" style="width: 350px;margin-left: 20px;"><input class="form-check-input" type="checkbox" id="formCheck-3"><label class="form-check-label" for="formCheck-3">Crash Hotpots<br></label></div>
-                    <div class="form-check" style="width: 350px;margin-left: 20px;"><input class="form-check-input" type="checkbox" id="formCheck-3"><label class="form-check-label" for="formCheck-3">Public Drinking Pots<br></label></div>
-                    <div class="getting-started-info"></div>
-                </div>
-                <!--startprint1-->
-                
-                <div class="col-md-6" style="width: 350px;">
-                    <iframe id="map" allowfullscreen="" frameborder="0" width="100%" height="400"></iframe>
-                </div>
-                <!--endprint1-->
-                <div class="col">
-                    <div class="row">
-                        <div class="col">
-                            <p style="font-size: 19px;margin-left: 50px;">Print your plan?<br></p>
-                        </div>
-                        <div class="col"><input type=button name='button_export' value='print'  onclick=preview(1) >
-                        </div>
-                        <div class="col">
-                            <p></p>
-                        </div>
-                        <div class="col">
-                            <p></p>
-                            <p></p>
-                        </div>
-                        <div class="col">
-                            <p></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </div>
-        </section>
-    </section>
     <footer class="page-footer">
         <div class="container" style="font-family: 'Bree Serif', serif;">
             <div class="links"><a href="About.html">About us</a><a href="Contact.html">Contact us</a></div>

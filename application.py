@@ -32,6 +32,9 @@ def rules():
 def contacts():
     return render_template("Contact.html")
 
+@app.route("/cycling_map")
+def cycling_map():
+    return render_template("CycleMap.html")
 
 
 

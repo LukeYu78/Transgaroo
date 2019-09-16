@@ -4,3 +4,68 @@
   background-color: #fff;
 }
 
+.form-check{
+  width: 200px;
+  margin-left: 50px;
+  padding: 5px;
+}
+
+.form-check-label{
+  font-family: 'Bree Serif', serif;
+  font-size: 17px;
+}
+
+#container{
+  width: 100%;
+  /* background-color: #ffcc33; */
+  margin: auto;
+  display: block;
+  margin-top: 80px;
+  height: 505px;
+  background-color: #e6e6e62e;
+}
+
+#search{
+  width: 30%;
+}
+
+
+input[type="checkbox"]{
+  outline: 1px solid #90969c;
+}
+
+#header{
+  font-family: 'Bree Serif', serif;
+  display: block;
+  text-align: center;
+  height: 20px;
+  padding: 30px;
+}
+
+#form-div{
+  width: 30%;
+  height: 500px;
+  float: left;
+}
+
+#map{
+  width: 65%;
+  height: 500px;
+  float: right;
+  border-width: 2px;
+  border-color: #90969c;
+}
+
+#p-text{
+  margin-top: 25px;
+  margin-left: 35px;
+  font-family: 'Bree Serif', serif;
+  font-size: 35px;
+}
+
+#new-search{
+  padding: 15px;
+  border-radius: 10px;
+  margin-left: 70px;
+  margin-top: 30px;
+}
