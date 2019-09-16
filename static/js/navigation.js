@@ -36,7 +36,7 @@ $(document).ready(function() {
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v11',
             center: [144.946457, -37.840935],
-            zoom: 13
+            zoom: 11
             });      
             var geocoder = new MapboxGeocoder({
               accessToken: mapboxgl.accessToken,
