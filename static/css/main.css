@@ -69,3 +69,30 @@ input[type="checkbox"]{
   margin-left: 70px;
   margin-top: 30px;
 }
+
+.marker {
+  background-image: url('../images/parkingLocation.jpg');
+  background-size: cover;
+  width: 40px;
+  height: 40px;
+  border-radius: 35%;
+  cursor: pointer;
+}
+
+.drinking-marker {
+  background-image: url('../images/drinkingImage.png');
+  background-size: cover;
+  width: 40px;
+  height: 40px;
+  border-radius: 35%;
+  cursor: pointer;
+}
+
+.crash-marker {
+  background-image: url('../images/bike_accident.png');
+  background-size: cover;
+  width: 60px;
+  height: 60px;
+  border-radius: 5%;
+  cursor: pointer;
+}
