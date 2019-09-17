@@ -96,3 +96,42 @@ input[type="checkbox"]{
   border-radius: 5%;
   cursor: pointer;
 }
+
+
+#aboutus_container{
+  width: 100%;
+  margin: auto;
+  display: block;
+  height: 920px;
+  background-color: #e6e6e685;
+}
+
+#aboutus_image{
+  width: 100%;
+  align-items: center;
+  height: 450px;
+  display: block;
+  border: #90969c;
+  border-radius: 10px;
+  float: left;
+}
+
+#image_cycling{
+  height: 500px;
+  align-items: center;
+  width: 100%;
+  border-radius:25px;
+}
+
+#aboutus_text{
+  font-family: 'Bree Serif', serif;
+    display: block;
+    float: left;
+    clear: left;
+    height: 400px;
+    margin-top: 75px;
+    margin-left: 10px;
+    margin-right: auto;
+    font-size: 17px;
+    text-justify: inter-word;
+}
