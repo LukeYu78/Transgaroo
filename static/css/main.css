@@ -71,11 +71,11 @@ input[type="checkbox"]{
 }
 
 .marker {
-  background-image: url('../images/parkingLocation.jpg');
+  background-image: url('../images/parkingLocation.png');
   background-size: cover;
   width: 40px;
   height: 40px;
-  border-radius: 35%;
+  border-radius: 5%;
   cursor: pointer;
 }
 
@@ -84,15 +84,15 @@ input[type="checkbox"]{
   background-size: cover;
   width: 40px;
   height: 40px;
-  border-radius: 35%;
+  border-radius: 5%;
   cursor: pointer;
 }
 
 .crash-marker {
-  background-image: url('../images/bike_accident.png');
+  background-image: url('../images/bike_accident.jpg');
   background-size: cover;
-  width: 60px;
-  height: 60px;
+  width: 30px;
+  height: 30px;
   border-radius: 5%;
   cursor: pointer;
 }
