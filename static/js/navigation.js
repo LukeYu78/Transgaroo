@@ -1,8 +1,3 @@
-
- 
-
-
-
 $(document).ready(function() { 
 
     const accessToken = 'pk.eyJ1IjoiZ2lyaXNoMSIsImEiOiJjanp2NGIwcmkwaTRjM21tdnN5NTlqb3NqIn0.isvbmWcUY3d25ip9294Igg';
@@ -15,16 +10,14 @@ $(document).ready(function() {
         zoom: 11,
         preserveDrawingBuffer: true
         });
-<<<<<<< HEAD:static/navigation.js
 
 
-=======
+
     var responseFromServer = new Array();
     var cyclePath = new Array();
     var parkingLocations = new Array();
     var drinkingLocations = new Array();
     var crashHotspots = new Array();
->>>>>>> feature/Iteration-2:static/js/navigation.js
     var geocoder = new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
         mapboxgl: mapboxgl
@@ -32,10 +25,6 @@ $(document).ready(function() {
 
     document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
 
-   
-    
-<<<<<<< HEAD:static/navigation.js
-=======
     $('#downloadLink').on('click',() =>{
       var img = map.getCanvas().toDataURL('../static/images/')
       $('#downloadLink').prop("href",img);
@@ -81,68 +70,8 @@ $(document).ready(function() {
           $('#geocoder').empty();
           $('#geocoder').append(geocoder.onAdd(map));        
       })
-    })
->>>>>>> feature/Iteration-2:static/js/navigation.js
-
-    // each
-    // function plotOnMap(success){
-    //   map.on('load',function(){
-    //     success.forEach((eachItem)=>{
-    //       map.addLayer(eachItem);
-    //     })
-    //   })
-    // }
-   
+    })   
     $(document).on('click', '#search', function(e) {
-<<<<<<< HEAD:static/navigation.js
-        let encodedValue = encodeURIComponent($(".mapboxgl-ctrl-geocoder--input").val())
-        console.log(encodedValue);
-      $.ajax({
-        url: 'https://api.mapbox.com/geocoding/v5/mapbox.places/'+encodedValue+'.json?access_token='+accessToken,
-        type: 'GET'
-      })
-      .done(function(data) {        
-        console.log(JSON.stringify(data.features[0].center));
-        var requestJson = new Object();
-        var coordinates = new Object();
-        
-        coordinates.lat = data.features[0].center[0];
-        coordinates.long = data.features[0].center[1];
-
-        if($('#formCheck-4').is(":checked")){
-            coordinates.isParkingBay = "True";
-        }else{
-            coordinates.isParkingBay = "False";
-        }
-        requestJson.coordinates = coordinates;
-        sendRequestToServer(requestJson).then((success)=>{
-          // if(requestJson.isParkingBay == "False"){
-          //   success.forEach((item)=>{
-          //     map.addLayer(item);
-          //   });
-          // }else{
-          //   success.forEach((item)=>{
-          //     map.loadImage('./parkingImage.png', function(error, image){
-          //       if (error) throw error;
-          //       map.addImage('parkingBay',image);
-          //       map.addLayer(item);
-          //     });
-          //   });
-          // }
-
-          success.forEach((item)=>{
-            if(item.type == "FeatureCollection"){
-              // map.loadImage('/static/parkingImage.png', function(error, image){
-              //     if (error) throw error;
-              //     map.addImage('parkingBay',image);
-              //     map.addLayer(item);
-              // });
-              item.features.forEach((marker)=>{
-                var el = document.createElement('div');
-                el.className = 'marker';
-
-                new mapboxgl.Marker(el)
-=======
       if($(".mapboxgl-ctrl-geocoder--input").val() == ""){
         alert("Please input a place name before you click GO!!")
       }else{
@@ -180,6 +109,7 @@ $(document).ready(function() {
                   })
                 })
             }
+            
             if($('#formCheck-5').is(":checked")){
                 drinkingLocations = responseFromServer[2];
                 drinkingLocations.forEach((markers)=>{
@@ -188,24 +118,11 @@ $(document).ready(function() {
                     el.className = 'drinking-marker';
   
                     new mapboxgl.Marker(el)
->>>>>>> feature/Iteration-2:static/js/navigation.js
                     .setLngLat(marker.geometry.coordinates)
                     .addTo(map);
               });
-            }else{
-              map.addLayer(item);
-            }
-<<<<<<< HEAD:static/navigation.js
-          })
-          
-        },(err)=>{
-          console.log(err);
-        });
-      })
-      .fail(function(err) {
-        console.log("error"+JSON.stringify(err))
-      })
-=======
+            });
+          }
 
             if($('#formCheck-6').is(":checked")){
               crashHotspots = responseFromServer[3];
@@ -219,7 +136,7 @@ $(document).ready(function() {
                   .addTo(map);
                 })
               })
-          }
+            }
             
             $('#formCheck-4').on('change',()=>{
               if($('#formCheck-4').is(":checked")){
@@ -303,7 +220,6 @@ $(document).ready(function() {
           console.log("error"+JSON.stringify(err))
         })
       } 
->>>>>>> feature/Iteration-2:static/js/navigation.js
     });
   })
 
@@ -318,16 +234,6 @@ function sendRequestToServer(requestJson){
       contentType:"application/json; charset=UTF-8"
     })
     .done(function(response) {
-<<<<<<< HEAD:static/navigation.js
-      if(requestJson.coordinates["isParkingBay"] === "False"){
-        var transformedData = preparedataforMap(response);
-        resolve(transformedData);
-      }else{
-        var transformedPointData = prepareDataForParking(response);
-        resolve(transformedPointData);
-      }
-      
-=======
       preparedataforMap(response).then((processedPathData)=>{
         responseList.push(processedPathData);
         prepareDataForParking(response).then((processedParkingData)=>{
@@ -353,7 +259,6 @@ function sendRequestToServer(requestJson){
         console.err(err);
         reject(err);
       });      
->>>>>>> feature/Iteration-2:static/js/navigation.js
     })
     .fail(function(err) {
       console.log("error"+err);
@@ -408,54 +313,6 @@ function preparedataforMap(response){
   return multlineData;
 }
 
-<<<<<<< HEAD:static/navigation.js
-
-
-function prepareDataForParking(response){
-  var multiPointData = new Array();
-  
-  response.forEach((element) => {
-    var overallObj = new Object();
-    var features = new Array();
-    element.parkingBays.forEach((eachParkingBay)=>{
-      var properties = new Object();
-      var geometry = new Object();
-      var innerObj = new Object();
-
-      geometry.coordinates = eachParkingBay.coordinates;
-      geometry.type = "Point";
-
-      properties.title = "parkingBayLocation";
-      properties.description = "CityOFMelbourne";
-
-      innerObj.type = "Feature";
-      innerObj.geometry = geometry;
-      innerObj.properties = properties; 
-
-      features.push(innerObj);
-    })
-    overallObj.type = "FeatureCollection";
-    overallObj.features = features;
-
-    // data.features = features;
-    // data.type = "FeatureCollection";
-
-    // source.data = data;
-    // source.type = "geojson";
-
-    // overallObj.source = source;
-    // overallObj.id = "parkingBay"+element.id.toString();
-    // overallObj.type = "symbol";
-
-    // overallObj["icon-image"] = "parkingBay";
-    // overallObj["icon-size"] = 0.1;
-
-    // multiPointData.push(overallObj);
-    multiPointData.push(overallObj);
-   });
-
-  return multiPointData;
-=======
 function prepareDataForDrinkingFountain(response){
   return new Promise((resolve,reject)=>{
     try {
@@ -533,5 +390,4 @@ function prepareDataForCrashHotspots(response){
         reject(error); 
       }
     }); 
->>>>>>> feature/Iteration-2:static/js/navigation.js
 }
