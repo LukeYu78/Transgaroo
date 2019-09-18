@@ -39,34 +39,23 @@ class WanderingRoute:
             
     def frontEndCompatibleData(self,response,coordinates):
         response_array = []
-        if coordinates["isParkingBay"] == "True":
-            for each in response:                        
-                coordinate_list = []
-                response_dict = {}
-                response_dict["id"] = each[0]
-                response_dict["type"] = each[2]
-                response_dict["direction"] = each[3]
-                coord_list = self.getGeomDataFormat(each[4])
-                coordinate_list.append(coord_list)
-                response_dict["geom_data"] = coordinate_list
-                response_dict["distance"] = each[5]
-                parkingBays = self.getParkingBays(each[0])
-                response_dict["parkingBays"] = parkingBays
-                response_array.append(response_dict)
-            print(response_array)    
-            return response_array
-        else:                
-            for each in response:
-                coordinate_list = []
-                response_dict = {}
-                response_dict["id"] = each[0]
-                response_dict["type"] = each[2]
-                response_dict["direction"] = each[3]
-                coord_list = self.getGeomDataFormat(each[4])
-                coordinate_list.append(coord_list)
-                response_dict["geom_data"] = coordinate_list
-                response_dict["distance"] = each[5]
-                response_array.append(response_dict)
+        for each in response:                        
+            coordinate_list = []
+            response_dict = {}
+            response_dict["id"] = each[0]
+            response_dict["type"] = each[2]
+            response_dict["direction"] = each[3]
+            coord_list = self.getGeomDataFormat(each[4])
+            coordinate_list.append(coord_list)
+            response_dict["geom_data"] = coordinate_list
+            response_dict["distance"] = each[5]
+            parkingBays = self.getParkingBays(each[0])
+            response_dict["parkingBays"] = parkingBays
+            drinkingFountainLocations = self.getDrinkingFountains(each[0])
+            response_dict["drinkingFountains"] = drinkingFountainLocations
+            cycle_crash_spots = self.getCrashHotspots(each[0])
+            response_dict["cycleCrashHotspots"] = cycle_crash_spots
+            response_array.append(response_dict)
         return response_array
             
     
@@ -98,6 +87,48 @@ class WanderingRoute:
             parkingDict["coordinates"] = parkinglocation
             parkingBays.append(parkingDict)
         return parkingBays
+    
+    
+    def getDrinkingFountains(self,path_id):
+        query = """SELECT cl.*
+                FROM public."CycleParkLocation" cl INNER JOIN public."CyclePath" cp 
+                ON ST_DWithin(cl.geom_location, cp.geom_path, 0.01) where cp.id = %s and cl.asset_type='Drinking Fountain' limit 10;"""
+        self.cur.execute(query,[path_id])
+        records = self.cur.fetchall()
+        drinkingFountains = []
+        for each in records:
+            drinkingDict = {}
+            drinkingLocation = []
+            drinkingDict["GS_ID"] = each[0]
+            drinkingDict["type"] = each[1]
+            drinkingLocation.append(each[2])
+            drinkingLocation.append(each[3])
+            drinkingDict["coordinates"] = drinkingLocation
+            drinkingFountains.append(drinkingDict)
+        return drinkingFountains
+    
+    
+    
+    def getCrashHotspots(self,path_id):
+        query = """SELECT chp.*
+                FROM public."CrashHotspots" chp INNER JOIN public."CyclePath" cp 
+                ON ST_DWithin(chp.geom_location, cp.geom_path,0.0001) where cp.id = %s limit 20;"""
+        self.cur.execute(query,[path_id])
+        records = self.cur.fetchall()
+        crash_hotspots = []
+        if len(records) == 0:
+            return crash_hotspots
+        for each in records:
+            crashDict = {}
+            crashLocation = []
+            crashDict["objectId"] = each[0]
+            crashDict["accident_time"] = each[3]
+            crashDict["bicyclist"] = each[5]
+            crashLocation.append(each[1])
+            crashLocation.append(each[2])
+            crashDict["coordinates"] = crashLocation
+            crash_hotspots.append(crashDict)
+        return crash_hotspots
     
     
     def close_connection(self):

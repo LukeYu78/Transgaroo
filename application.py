@@ -7,8 +7,8 @@ Created on Mon Aug 26 14:37:18 2019
 """
 
 # importing the dependences to run the application
-from flask import Flask,render_template
-from controllers.ModelController import CycleDB,ParkingDB
+from flask import Flask,render_template,url_for
+from controllers.ModelController import CycleDB,ParkingDB,HotspotDB
 from controllers.QueryController import WanderingRoute
 import json
 from flask import request
@@ -18,7 +18,25 @@ app = Flask(__name__)
 
 @app.route("/")
 def go_home():
-    return render_template("LandingPage.html")
+    return render_template("index.html")
+
+@app.route("/about_us")
+def go_about_us():
+    return render_template("About.html")
+
+@app.route("/rules")
+def rules():
+    return render_template("Rules.html")
+
+@app.route("/contact")
+def contacts():
+    return render_template("Contact.html")
+
+@app.route("/cycling_map")
+def cycling_map():
+    return render_template("CycleMap.html")
+
+
 
 @app.route("/migrate_data",methods=['GET'])
 def create_infra():
@@ -26,6 +44,7 @@ def create_infra():
     print("Migrating cycle path data ....")
     res.append(CycleDB().migrate_data_to_db())
     res.append(ParkingDB().migrate_data_to_db())
+    res.append(HotspotDB().migrate_data_to_db())
     return json.dumps(res)
     
     
@@ -36,6 +55,7 @@ def migrate_data():
     print("Clearing all the content cycle path data ....")
     res.append(CycleDB().clear_table())
     res.append(ParkingDB().clear_table())
+    res.append(HotspotDB().clear_table())
     return json.dumps(res)
 
 
