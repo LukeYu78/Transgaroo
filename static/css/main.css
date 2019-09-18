@@ -135,3 +135,17 @@ input[type="checkbox"]{
     font-size: 17px;
     text-justify: inter-word;
 }
+
+#print_function{
+  margin: auto;
+  display: block;
+  margin-top: 50px;
+  margin-left: 30px;
+}
+
+#print-text{
+  padding: 6px;
+  margin-top: -12px;
+  font-family: 'Bree Serif', serif;
+  font-size: 25px;
+}

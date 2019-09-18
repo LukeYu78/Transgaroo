@@ -39,8 +39,8 @@
                 class="collapse navbar-collapse" id="navcol-1">
                 <div class="card"></div>
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation" href="{ url_for('go_home') }}" style="font-size: 18px;"><a class="nav-link" style="color:#ffffff;" href="{{ url_for('go_home') }}"><i class="fa fa-home"></i> Home</a></li>
-                        <li class="nav-item" role="presentation" style="font-size: 18px;"><a class="nav-link" style="color:#ffffff;" href="#MMap"><i class="far fa-map"></i> Cycling Map</a></li>
+                        <li class="nav-item" role="presentation" href="{ url_for('go_home') }}" style="font-size: 18px;"><a class="nav-link" style="color:#ffffff;" href="{{ url_for('go_home') }}"><i class="fa fa-home"></i> Home</a></li>
+                        <li class="nav-item" role="presentation" style="font-size: 18px;"><a class="nav-link" style="color:#ffffff;" href="{{ url_for('cycling_map') }}"><i class="far fa-map"></i> Cycling Map</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" style="color: #ffffff;font-size: 18px;" href="{{ url_for('rules') }}"><i class="fa fa-book"></i>&nbsp;Rules</a></li>
                         <li class="nav-item" role="presentation" style="font-size: 18px;"><a class="nav-link" style="color:#ffffff;" href="{{ url_for('contacts') }}"><i class="fa fa-phone-square"></i>&nbsp;Contact</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" style="color:#ffffff;font-size:18px" href="{{ url_for('go_about_us') }}"><i class="fa fa-user"></i> About us</a></li>
@@ -117,7 +117,13 @@
 
     <footer class="page-footer">
         <div class="container" style="font-family: 'Bree Serif', serif;">
-            <div class="links"><a href="{{ url_for('static', filename='About.html') }}">About us</a><a href="{{ url_for('static', filename='Contact.html') }}">Contact us</a></div>
+            <div class="links">
+                    <a href="{{ url_for('go_home') }}">Home</a>
+                    <a href="{{ url_for('cycling_map') }}">Cyling Map</a>
+                    <a href="{{ url_for('rules') }}">Rules</a>
+                    <a href="{{ url_for('contacts') }}">Contact us</a>
+                    <a href="{{ url_for('go_about_us') }}">About us</a>
+            </div>
         </div>
     </footer>
     <script src="../static/js/jquery.min.js"></script>

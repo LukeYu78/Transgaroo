@@ -118,7 +118,13 @@
     </main>
     <footer class="page-footer">
         <div class="container" style="font-family: 'Bree Serif', serif;">
-            <div class="links"><a href="About.html">About us</a><a href="Contact.html">Contact us</a></div>
+            <div class="links">
+                <a href="{{ url_for('go_home') }}">Home</a>
+                <a href="{{ url_for('cycling_map') }}">Cyling Map</a>
+                <a href="{{ url_for('rules') }}">Rules</a>
+                <a href="{{ url_for('contacts') }}">Contact us</a>
+                <a href="{{ url_for('go_about_us') }}">About us</a>
+            </div>
         </div><span class="fa fa-angle-up ir-arriba"> </span></footer>
     <script src="../static/js/jquery.min.js"></script>
     <script src="../static/js/bootstrap.min.js"></script>

@@ -6,7 +6,8 @@ $(document).ready(function() {
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
         center: [144.946457, -37.840935],
-        zoom: 11
+        zoom: 11,
+        preserveDrawingBuffer: true
         });
     var responseFromServer = new Array();
     var cyclePath = new Array();
@@ -28,6 +29,11 @@ $(document).ready(function() {
 
     document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
     
+    $('#downloadLink').on('click',() =>{
+      var img = map.getCanvas().toDataURL('../static/images/')
+      $('#downloadLink').prop("href",img);
+    });
+
     $(document).ready(function(){
       $("#new-search").on('click',()=>{
           //isNewSearch = true;
@@ -36,7 +42,8 @@ $(document).ready(function() {
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v11',
             center: [144.946457, -37.840935],
-            zoom: 11
+            zoom: 11,
+            preserveDrawingBuffer: true
             });      
             var geocoder = new MapboxGeocoder({
               accessToken: mapboxgl.accessToken,
