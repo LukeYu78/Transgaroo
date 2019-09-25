@@ -149,3 +149,12 @@ input[type="checkbox"]{
   font-family: 'Bree Serif', serif;
   font-size: 25px;
 }
+
+.col-md-4{
+  transition: transform .2s;
+  cursor: pointer;
+}
+
+.col-md-4:hover {
+  transform: scale(1.125); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}

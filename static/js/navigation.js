@@ -227,6 +227,27 @@ $(document).ready(function() {
   });
 })
 
+
+$(document).ready(function() {
+  $('#cycle_map').on( "click", function() {
+    window.location = "/cycling_map";
+  });
+});
+
+
+$(document).ready(function() {
+  $('#rules').on( "click", function() {
+    window.location = "/rules";
+  });
+});
+
+
+$(document).ready(function() {
+  $('#save_plan').on( "click", function() {
+    window.location = "/cycling_map";
+  });
+});
+
 function sendRequestToServer(requestJson){
 var responseList = new Array();
 return new Promise((resolve,reject)=> {
