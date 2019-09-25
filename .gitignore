@@ -1,0 +1,2 @@
+#ignore the entire directory
+controllers/__pycache__
