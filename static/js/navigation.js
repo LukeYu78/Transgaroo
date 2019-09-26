@@ -267,7 +267,12 @@ return new Promise((resolve,reject)=> {
           responseList.push(processFountainData);
           prepareDataForCrashHotspots(response).then((processedCrashData)=>{
             responseList.push(processedCrashData);
-            resolve(responseList);
+            processAccidentIndicators(responseList).then((processedResponseList)=>{
+              resolve(processedResponseList);
+            },(err)=>{
+              console.log(err);
+              reject(err);
+            })
           },(err)=>{
             console.err(err);
             reject(err);  
@@ -453,4 +458,26 @@ return new Promise((resolve,reject)=>{
       reject(error); 
     }
   }); 
+}
+
+
+function processAccidentIndicators(responseList){
+  return new Promise((resolve,reject)=>{
+    try{
+      for(let i=0;i<responseList[0].length;i++){
+        if(Object.keys(responseList[3][i]).length == 0){
+          responseList[0][i].paint["line-color"] = "#027A55";
+        }else{
+          if(responseList[3][i].features.length >= 5){
+            responseList[0][i].paint["line-color"] = "#ff5500";
+          }else{
+            responseList[0][i].paint["line-color"] = "#027A55";
+          }
+        } 
+      }
+      resolve(responseList);     
+    }catch(error){
+      reject(error);
+    }
+  });
 }
