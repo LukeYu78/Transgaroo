@@ -468,10 +468,12 @@ function processAccidentIndicators(responseList){
         if(Object.keys(responseList[3][i]).length == 0){
           responseList[0][i].paint["line-color"] = "#027A55";
         }else{
-          if(responseList[3][i].features.length >= 5){
-            responseList[0][i].paint["line-color"] = "#ff5500";
-          }else{
+          if(responseList[3][i].features.length < 5){
             responseList[0][i].paint["line-color"] = "#027A55";
+          }else if(responseList[3][i].features.length >= 5 && responseList[3][i].features.length < 10){
+            responseList[0][i].paint["line-color"] = "#fc9803";
+          }else{
+            responseList[0][i].paint["line-color"] = "#ff5500"
           }
         } 
       }
