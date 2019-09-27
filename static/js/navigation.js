@@ -43,7 +43,7 @@ $(document).ready(function() {
   // });
 
   document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
-  document.getElementById('dest_geocoder').appendChild(dest_geocoder.onAdd(map));
+  //document.getElementById('dest_geocoder').appendChild(dest_geocoder.onAdd(map));
   
   $('#downloadLink').on('click',() =>{
     var img = map.getCanvas().toDataURL('../static/images/')
