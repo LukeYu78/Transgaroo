@@ -24,26 +24,26 @@ $(document).ready(function() {
             return acc || cur;
           });
         },
-        placeholder: "Start from here",
+        placeholder: "Start Location",
         mapboxgl: mapboxgl
       });
 
-  // // var dest_geocoder = new MapboxGeocoder({
-  // //   accessToken: mapboxgl.accessToken,
-  // //   countries: 'au',
-  // //   filter: function (item) {
-  // //     return item.context.map(function (i) {
-  // //       return (i.text === 'Melbourne');
-  // //     }).reduce(function (acc, cur) {
-  // //       return acc || cur;
-  // //     });
-  // //   },
-  // //   placeholder: "Start from here",
-  // //   mapboxgl: mapboxgl
-  // });
+  var dest_geocoder = new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
+    countries: 'au',
+    filter: function (item) {
+      return item.context.map(function (i) {
+        return (i.text === 'Melbourne');
+      }).reduce(function (acc, cur) {
+        return acc || cur;
+      });
+    },
+    placeholder: "Destination Location",
+    mapboxgl: mapboxgl
+  });
 
   document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
-  //document.getElementById('dest_geocoder').appendChild(dest_geocoder.onAdd(map));
+  document.getElementById('dest_geocoder').appendChild(dest_geocoder.onAdd(map));
   
   $('#downloadLink').on('click',() =>{
     var img = map.getCanvas().toDataURL('../static/images/')
@@ -71,6 +71,7 @@ $(document).ready(function() {
                 return acc || cur;
               });
             },
+            placeholder: "Start Location",
             mapboxgl: mapboxgl
           });
         if($('#formCheck-4').prop('checked')){

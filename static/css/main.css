@@ -80,10 +80,10 @@ input[type="checkbox"]{
 }
 
 .drinking-marker {
-  background-image: url('../images/drinkingImage.png');
+  background-image: url('../images/water2.png');
   background-size: cover;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 5%;
   cursor: pointer;
 }
