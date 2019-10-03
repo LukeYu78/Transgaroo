@@ -50,47 +50,8 @@ $(document).ready(function() {
     $('#downloadLink').prop("href",img);
   });
 
-  $(document).ready(function(){
-    $("#new-search").on('click',()=>{
-        //isNewSearch = true;
-        console.log("inside text box empty")
-        map = new mapboxgl.Map({
-          container: 'map',
-          style: 'mapbox://styles/mapbox/streets-v11',
-          center: [144.946457, -37.840935],
-          zoom: 11,
-          preserveDrawingBuffer: true
-          });      
-          var geocoder = new MapboxGeocoder({
-            accessToken: mapboxgl.accessToken,
-            countries: 'au',
-            filter: function (item) {
-              return item.context.map(function (i) {
-                return (i.text === 'Melbourne');
-              }).reduce(function (acc, cur) {
-                return acc || cur;
-              });
-            },
-            placeholder: "Start Location",
-            mapboxgl: mapboxgl
-          });
-        if($('#formCheck-4').prop('checked')){
-          $('#formCheck-4').prop('checked', false);
-        }
-        if($('#formCheck-5').prop('checked')){
-          $('#formCheck-5').prop('checked', false);
-        }
-        if($('#formCheck-6').prop('checked')){
-          $('#formCheck-6').prop('checked', false);
-        }
-        responseFromServer = new Array();
-        cyclePath = new Array();
-        parkingLocations = new Array();
-        drinkingLocations = new Array();
-        crashHotspots = new Array();        
-        $('#geocoder').empty();
-        $('#geocoder').append(geocoder.onAdd(map));        
-    })
+  $("#new-search").on('click',()=>{
+    location.reload(true);
   })
 
   $(document).on('click', '#search', function(e) {
@@ -98,147 +59,167 @@ $(document).ready(function() {
       alert("Please input a place name before you click GO!!")
     }else{
         //isNewSearch = false;
+        let destEncodedValue= $('span#dest_geocoder input.mapboxgl-ctrl-geocoder--input').val()
         let encodedValue = encodeURIComponent($(".mapboxgl-ctrl-geocoder--input").val())
       $.ajax({
         url: 'https://api.mapbox.com/geocoding/v5/mapbox.places/'+encodedValue+'.json?access_token='+accessToken,
         type: 'GET'
       })
-      .done(function(data) {        
-        var requestJson = new Object();
-        var coordinates = new Object();
+      .done(function(sourceData) {
+        $.ajax({
+          url: 'https://api.mapbox.com/geocoding/v5/mapbox.places/'+destEncodedValue+'.json?access_token='+accessToken,
+          type: 'GET'
+        }).done(function(destData){ 
+            var requestJson = new Object();
+            var coordinates = new Object();
+            var source = new Object();
+            var target = new Object();
+    
+            source.lat = sourceData.features[0].center[0];
+            source.long = sourceData.features[0].center[1];
 
-        console.log(data);
-        coordinates.lat = data.features[0].center[0];
-        coordinates.long = data.features[0].center[1];
+            target.lat = destData.features[0].center[0];
+            target.long = destData.features[0].center[1];
 
-        requestJson.coordinates = coordinates;
-        sendRequestToServer(requestJson).then((success)=>{
-          responseFromServer = success;
-          cyclePath = responseFromServer[0];
-          cyclePath.forEach((item)=>{
-            map.addLayer(item);
-          });
-          if($('#formCheck-4').is(":checked")){
-              parkingLocations = responseFromServer[1];
-              parkingLocations.forEach((markers)=>{
-                markers.features.forEach((marker)=>{
-                  var el = document.createElement('div');
-                  el.className = 'marker';
+            coordinates.source = source;
+            coordinates.target = target;
 
-                  new mapboxgl.Marker(el)
-                  .setLngLat(marker.geometry.coordinates)
-                  .addTo(map);
-                })
-              })
-          }
-          if($('#formCheck-5').is(":checked")){
-              drinkingLocations = responseFromServer[2];
-              drinkingLocations.forEach((markers)=>{
-                markers.features.forEach((marker)=>{
-                  var el = document.createElement('div');
-                  el.className = 'drinking-marker';
-
-                  new mapboxgl.Marker(el)
-                  .setLngLat(marker.geometry.coordinates)
-                  .addTo(map);
-                })
-              })
-          }
-
-          if($('#formCheck-6').is(":checked")){
-            crashHotspots = responseFromServer[3];
-            crashHotspots.forEach((markers)=>{
-              markers.features.forEach((marker)=>{
-                var el = document.createElement('div');
-                el.className = 'crash-marker';
-
-                new mapboxgl.Marker(el)
-                .setLngLat(marker.geometry.coordinates)
-                .addTo(map);
-              })
-            })
-        }
-          
-          $('#formCheck-4').on('change',()=>{
-            if($('#formCheck-4').is(":checked")){
-              if($(".mapboxgl-ctrl-geocoder--input").val() == ""){
-                alert("Please input a place name before you click GO!!")
-              }else{
+            // console.log(data);
+            // coordinates.lat = data.features[0].center[0];
+            // coordinates.long = data.features[0].center[1];
+    
+            requestJson.coordinates = coordinates;
+            console.log(JSON.stringify(requestJson));
+            sendRequestToServer(requestJson).then((success)=>{
+              responseFromServer = success;
+              cyclePath = responseFromServer[0];
+              cyclePath.forEach((item)=>{
+                map.addLayer(item);
+              });
+              if($('#formCheck-4').is(":checked")){
                   parkingLocations = responseFromServer[1];
                   parkingLocations.forEach((markers)=>{
                     markers.features.forEach((marker)=>{
                       var el = document.createElement('div');
                       el.className = 'marker';
-  
+    
                       new mapboxgl.Marker(el)
                       .setLngLat(marker.geometry.coordinates)
                       .addTo(map);
                     })
                   })
               }
-            }else{
-              let markers = document.getElementsByClassName("marker");
-              for (let i = 0; i < markers.length; i++) {
-                  markers[i].style.visibility = "hidden";
-              }
-            }
-          })
-
-          $('#formCheck-5').on('change',()=>{
-            if($('#formCheck-5').is(":checked")){
-              if($(".mapboxgl-ctrl-geocoder--input").val() == ""){
-                alert("Please input a place name before you click GO!!")
-              }else{
+              if($('#formCheck-5').is(":checked")){
                   drinkingLocations = responseFromServer[2];
                   drinkingLocations.forEach((markers)=>{
                     markers.features.forEach((marker)=>{
                       var el = document.createElement('div');
                       el.className = 'drinking-marker';
-  
+    
                       new mapboxgl.Marker(el)
                       .setLngLat(marker.geometry.coordinates)
                       .addTo(map);
                     })
                   })
               }
-            }else{
-              let markers = document.getElementsByClassName("drinking-marker");
-              for (let i = 0; i < markers.length; i++) {
-                  markers[i].style.visibility = "hidden";
-              }
-            }
-          })
-
-          $('#formCheck-6').on('change',()=>{
-            if($('#formCheck-6').is(":checked")){
-              if($(".mapboxgl-ctrl-geocoder--input").val() == ""){
-                alert("Please input a place name before you click GO!!")
-              }else{
-                  crashHotspots = responseFromServer[3];
-                  crashHotspots.forEach((markers)=>{
-                    markers.features.forEach((marker)=>{
-                      var el = document.createElement('div');
-                      el.className = 'crash-marker';
-  
-                      new mapboxgl.Marker(el)
-                      .setLngLat(marker.geometry.coordinates)
-                      .addTo(map);
-                    })
+    
+              if($('#formCheck-6').is(":checked")){
+                crashHotspots = responseFromServer[3];
+                crashHotspots.forEach((markers)=>{
+                  markers.features.forEach((marker)=>{
+                    var el = document.createElement('div');
+                    el.className = 'crash-marker';
+    
+                    new mapboxgl.Marker(el)
+                    .setLngLat(marker.geometry.coordinates)
+                    .addTo(map);
                   })
-              }
-            }else{
-              let markers = document.getElementsByClassName("crash-marker");
-              for (let i = 0; i < markers.length; i++) {
-                  markers[i].style.visibility = "hidden";
-              }
+                })
             }
+              
+              $('#formCheck-4').on('change',()=>{
+                if($('#formCheck-4').is(":checked")){
+                  if($(".mapboxgl-ctrl-geocoder--input").val() == ""){
+                    alert("Please input a place name before you click GO!!")
+                  }else{
+                      parkingLocations = responseFromServer[1];
+                      parkingLocations.forEach((markers)=>{
+                        markers.features.forEach((marker)=>{
+                          var el = document.createElement('div');
+                          el.className = 'marker';
+      
+                          new mapboxgl.Marker(el)
+                          .setLngLat(marker.geometry.coordinates)
+                          .addTo(map);
+                        })
+                      })
+                  }
+                }else{
+                  let markers = document.getElementsByClassName("marker");
+                  for (let i = 0; i < markers.length; i++) {
+                      markers[i].style.visibility = "hidden";
+                  }
+                }
+              })
+    
+              $('#formCheck-5').on('change',()=>{
+                if($('#formCheck-5').is(":checked")){
+                  if($(".mapboxgl-ctrl-geocoder--input").val() == ""){
+                    alert("Please input a place name before you click GO!!")
+                  }else{
+                      drinkingLocations = responseFromServer[2];
+                      drinkingLocations.forEach((markers)=>{
+                        markers.features.forEach((marker)=>{
+                          var el = document.createElement('div');
+                          el.className = 'drinking-marker';
+      
+                          new mapboxgl.Marker(el)
+                          .setLngLat(marker.geometry.coordinates)
+                          .addTo(map);
+                        })
+                      })
+                  }
+                }else{
+                  let markers = document.getElementsByClassName("drinking-marker");
+                  for (let i = 0; i < markers.length; i++) {
+                      markers[i].style.visibility = "hidden";
+                  }
+                }
+              })
+    
+              $('#formCheck-6').on('change',()=>{
+                if($('#formCheck-6').is(":checked")){
+                  if($(".mapboxgl-ctrl-geocoder--input").val() == ""){
+                    alert("Please input a place name before you click GO!!")
+                  }else{
+                      crashHotspots = responseFromServer[3];
+                      crashHotspots.forEach((markers)=>{
+                        if(Object.entries(markers).length != 0){
+                          markers.features.forEach((marker)=>{
+                            var el = document.createElement('div');
+                            el.className = 'crash-marker';
+        
+                            new mapboxgl.Marker(el)
+                            .setLngLat(marker.geometry.coordinates)
+                            .addTo(map);
+                          })
+                        }
+                      })
+                  }
+                }else{
+                  let markers = document.getElementsByClassName("crash-marker");
+                  for (let i = 0; i < markers.length; i++) {
+                      markers[i].style.visibility = "hidden";
+                  }
+                }
+              })
+            },(err)=>{
+              console.log(err);
+            });
           })
-        },(err)=>{
-          console.log(err);
-        });
-      })
-      .fail(function(err) {
-        console.log("error"+JSON.stringify(err))
+          .fail(function(err) {
+            console.log("error"+JSON.stringify(err))
+          })
       })
     } 
   });
