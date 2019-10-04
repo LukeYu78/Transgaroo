@@ -195,6 +195,7 @@ input[type="checkbox"]{
     font-family: sans-serif;
     font-size: 0.8em;
     line-height: 2em;
+    z-index: 1;
   }
   
   #info {

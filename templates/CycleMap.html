@@ -69,7 +69,7 @@
                 <ul class="nav navbar-nav ml-auto">
                         <li class="nav-item" role="presentation" href="{ url_for('go_home') }}" style="font-size: 18px;"><a class="nav-link" style="color:#ffffff;" href="{{ url_for('go_home') }}"><i class="fa fa-home"></i> Home</a></li>
                         <li class="nav-item" role="presentation" style="font-size: 18px;"><a class="nav-link" style="color:#ffffff;" href="{{ url_for('cycling_map') }}"><i class="far fa-map"></i> Cycling Map</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" style="color: #ffffff;font-size: 18px;" href="{{ url_for('rules') }}"><i class="fa fa-book"></i>&nbsp;Rules</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" style="color: #ffffff;font-size: 18px;" href="{{ url_for('rules') }}"><i class="fa fa-book"></i>&nbsp;Safety Tips</a></li>
                         <li class="nav-item" role="presentation" style="font-size: 18px;"><a class="nav-link" style="color:#ffffff;" href="{{ url_for('contacts') }}"><i class="fa fa-phone-square"></i>&nbsp;Contact</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" style="color:#ffffff;font-size:18px" href="{{ url_for('go_about_us') }}"><i class="fa fa-user"></i> About us</a></li>
                         <li class="nav-item" role="presentation"></li>
@@ -112,6 +112,14 @@
         
         <div id='map'>
              <!--startprint1-->
+             <div>
+                <div class="info-box">
+                    <div id="info">
+                      <p>Draw your route using the draw tools on the right. To get the most accurate route match, draw points at regular intervals.</p>
+                    </div>
+                    <div id="directions"></div>
+                  </div>
+            </div>
         </div>
 
         <div id='state-legend' class='legend'>
@@ -120,6 +128,15 @@
                 <div><span style='background-color: #fc9803'></span>Moderately Safe</div>
                 <div><span style='background-color: #ff5500'></span>Least Safe</div>
             </div>
+
+        <div>
+            <!-- <div class="info-box">
+                <div id="info">
+                  <p>Draw your route using the draw tools on the right. To get the most accurate route match, draw points at regular intervals.</p>
+                </div>
+                <div id="directions"></div>
+              </div>
+        </div> -->
         <!--endprint1-->
     </div>
     <footer class="page-footer">
