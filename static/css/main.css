@@ -21,7 +21,7 @@
   margin: auto;
   display: block;
   margin-top: 80px;
-  height: 505px;
+  height: 560px;
   background-color: #e6e6e62e;
 }
 
@@ -202,3 +202,75 @@ input[type="checkbox"]{
     font-size: 16px;
     font-weight: bold;
   }
+
+  @import url('https://fonts.googleapis.com/css?family=Dax:400,900');
+ .middle {
+	 width: 100%;
+   text-align: center;
+   border-radius: 10px;
+	/* Made by */
+}
+ .middle h1 {
+	 font-family: 'Dax', sans-serif;
+	 color: #fff;
+}
+ .middle input[type="radio"] {
+	 display: none;
+}
+  .middle input[type="radio"]:checked + .box {
+  background-color: #90969c;
+}
+ .middle input[type="radio"]:checked + .box span {
+	 color: white;
+	 transform: translateY(0px);
+}
+ .middle input[type="radio"]:checked + .box span:before {
+	 transform: translateY(0px);
+	 opacity: 1;
+}
+.middle .box {
+  width: 200px;
+  height: 75px;
+  background-color: #cccfd170;
+  transition: all 250ms ease;
+  will-change: transition;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  font-family: 'Bree Serif', serif;
+  font-weight: 500;
+}
+ .middle .box:active {
+	 transform: translateY(0px);
+}
+ .middle .box span {
+	 position: absolute;
+	 transform: translate(0, 0 0px);
+	 left: 0;
+	 right: 0;
+	 transition: all 300ms ease;
+	 font-size: 1.2em;
+	 user-select: none;
+	 color: #21262a;
+}
+ .middle .box span:before {
+	 font-size: 1.2em;
+	 font-family: FontAwesome;
+	 display: block;
+	 transform: translateY(-80px);
+	 opacity: 0;
+	 transition: all 300ms ease-in-out;
+	 font-weight: normal;
+	 color: white;
+}
+ .middle .front-end span:before {
+	 content: '\f206';
+}
+ .middle .back-end span:before {
+	 content: '\f041';
+}
+
+#footer_cyling{
+  margin-top: 60px;
+}
