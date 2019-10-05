@@ -1,0 +1,276 @@
+@media print {
+  margin: 0;
+  color: #000;
+  background-color: #fff;
+}
+
+.form-check{
+  width: 200px;
+  margin-left: 50px;
+  padding: 5px;
+}
+
+.form-check-label{
+  font-family: 'Bree Serif', serif;
+  font-size: 17px;
+}
+
+#container{
+  width: 100%;
+  /* background-color: #ffcc33; */
+  margin: auto;
+  display: block;
+  margin-top: 80px;
+  height: 560px;
+  background-color: #e6e6e62e;
+}
+
+#search{
+  width: 30%;
+}
+
+
+input[type="checkbox"]{
+  outline: 1px solid #90969c;
+}
+
+#header{
+  font-family: 'Bree Serif', serif;
+  display: block;
+  text-align: center;
+  height: 20px;
+  padding: 30px;
+}
+
+#form-div{
+  width: 30%;
+  height: 500px;
+  float: left;
+}
+
+#map{
+  width: 65%;
+  height: 500px;
+  float: right;
+  border-width: 2px;
+  border-color: #90969c;
+}
+
+#p-text{
+  margin-top: 25px;
+  margin-left: 35px;
+  font-family: 'Bree Serif', serif;
+  font-size: 35px;
+}
+
+#new-search{
+  padding: 15px;
+  border-radius: 10px;
+  margin-left: 70px;
+  margin-top: 30px;
+}
+
+.marker {
+  background-image: url('../images/parkingLocation.png');
+  background-size: cover;
+  width: 40px;
+  height: 40px;
+  border-radius: 5%;
+  cursor: pointer;
+}
+
+.drinking-marker {
+  background-image: url('../images/water2.png');
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  border-radius: 5%;
+  cursor: pointer;
+}
+
+.crash-marker {
+  background-image: url('../images/bike_accident.jpg');
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  border-radius: 5%;
+  cursor: pointer;
+}
+
+
+#aboutus_container{
+  width: 100%;
+  margin: auto;
+  display: block;
+  height: 920px;
+  background-color: #e6e6e685;
+}
+
+#aboutus_image{
+  width: 100%;
+  align-items: center;
+  height: 450px;
+  display: block;
+  border: #90969c;
+  border-radius: 10px;
+  float: left;
+}
+
+#image_cycling{
+  height: 500px;
+  align-items: center;
+  width: 100%;
+  border-radius:25px;
+}
+
+#aboutus_text{
+  font-family: 'Bree Serif', serif;
+    display: block;
+    float: left;
+    clear: left;
+    height: 400px;
+    margin-top: 75px;
+    margin-left: 10px;
+    margin-right: auto;
+    font-size: 17px;
+    text-justify: inter-word;
+}
+
+#print_function{
+  margin: auto;
+  display: block;
+  margin-top: 50px;
+  margin-left: 30px;
+}
+
+#print-text{
+  padding: 6px;
+  margin-top: -12px;
+  font-family: 'Bree Serif', serif;
+  font-size: 25px;
+}
+
+.col-md-4{
+  transition: transform .2s;
+  cursor: pointer;
+}
+
+.col-md-4:hover {
+  transform: scale(1.125); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+.legend {
+  background-color: #fff;
+  border-radius: 3px;
+  bottom: 30px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.10);
+  font: 14px/22px 'Bree Serif', serif;
+  padding: 10px;
+  position: absolute;
+  right: 10px;
+  z-index: 1;
+  }
+   
+  .legend h4 {
+  margin: 0 0 10px;
+  }
+   
+  .legend div span {
+  border-radius: 50%;
+  display: inline-block;
+  height: 10px;
+  margin-right: 5px;
+  width: 10px;
+  }
+
+  .info-box {
+    position: absolute;
+    margin: 20px;
+    width: 25%;
+    top: 0;
+    bottom: 40%;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    overflow-y: scroll;
+    font-family: sans-serif;
+    font-size: 0.8em;
+    line-height: 2em;
+    z-index: 1;
+  }
+  
+  #info {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  @import url('https://fonts.googleapis.com/css?family=Dax:400,900');
+ .middle {
+	 width: 100%;
+   text-align: center;
+   border-radius: 10px;
+	/* Made by */
+}
+ .middle h1 {
+	 font-family: 'Dax', sans-serif;
+	 color: #fff;
+}
+ .middle input[type="radio"] {
+	 display: none;
+}
+  .middle input[type="radio"]:checked + .box {
+  background-color: #90969c;
+}
+ .middle input[type="radio"]:checked + .box span {
+	 color: white;
+	 transform: translateY(0px);
+}
+ .middle input[type="radio"]:checked + .box span:before {
+	 transform: translateY(0px);
+	 opacity: 1;
+}
+.middle .box {
+  width: 200px;
+  height: 75px;
+  background-color: #cccfd170;
+  transition: all 250ms ease;
+  will-change: transition;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  font-family: 'Bree Serif', serif;
+  font-weight: 500;
+}
+ .middle .box:active {
+	 transform: translateY(0px);
+}
+ .middle .box span {
+	 position: absolute;
+	 transform: translate(0, 0 0px);
+	 left: 0;
+	 right: 0;
+	 transition: all 300ms ease;
+	 font-size: 1.2em;
+	 user-select: none;
+	 color: #21262a;
+}
+ .middle .box span:before {
+	 font-size: 1.2em;
+	 font-family: FontAwesome;
+	 display: block;
+	 transform: translateY(-80px);
+	 opacity: 0;
+	 transition: all 300ms ease-in-out;
+	 font-weight: normal;
+	 color: white;
+}
+ .middle .front-end span:before {
+	 content: '\f206';
+}
+ .middle .back-end span:before {
+	 content: '\f041';
+}
+
+#footer_cyling{
+  margin-top: 60px;
+}
