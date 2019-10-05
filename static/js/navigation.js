@@ -233,8 +233,23 @@ $(document).ready(function() {
   document.getElementById('dest_geocoder').appendChild(dest_geocoder.onAdd(map));
   
   $('#downloadLink').on('click',() =>{
-    var img = map.getCanvas().toDataURL('../static/images/')
-    $('#downloadLink').prop("href",img);
+    // var img = map.getCanvas().toDataURL('../static/images/')
+    // $('#downloadLink').prop("href",img);
+
+    html2canvas($('#map')[0], {
+      useCORS: true,
+      allowTaint: true
+    })
+    .then(function(canvas) {
+      var img = canvas.toDataURL('image/png');
+      var link = document.createElement('a');
+      link.href = img;
+      link.download = "map.png";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
+
   });
 
   $("#new-search").on('click',()=>{
