@@ -86,22 +86,22 @@
             <p id='p-text'>Start Your Ride Here</p>
             <div class="middle">
                 <label>
-                    <input type="radio" name="radio" checked/>
+                    <input type="radio" name="radio" value ="Wandering" checked/>
                         <div class="front-end box">
                             <span>Wandering</span>
                         </div>
                 </label>
               
                 <label>
-                    <input type="radio" name="radio"/>
+                    <input type="radio" name="radio" value="Destination"/>
                         <div class="back-end box">
                             <span>Destination</span>
                         </div>
                 </label>
               </div>
-            <div style="display:inline;float:left;margin-left: 35px;position: sticky;z-index: 2;"><span id = 'geocoder'></span></div>
-            <div style="display:inline;float:left;margin-left: 35px; margin-top:10px;"><span id = 'dest_geocoder'></span></div>
-            <div style="padding-bottom: 65px;">
+            <div style="display:inline;float:left;margin-left: 35px;position: sticky;z-index: 2;margin-top:10px;"><span id = 'geocoder'></span></div>
+            <div style="display:inline;float:left;margin-left: 35px; margin-top:10px;"><span id = 'dest_geocoder' style="display:none;"></span></div>
+            <div id='search_button' style="padding-bottom:5px;margin-top: 10px;">
                 <button id='search' class="btn btn-primary" type="button" style="margin-left: 20px;">Get All Paths</button>
             </div>
             <div class="form-check" ><input class="form-check-input" type="checkbox" id="formCheck-4"><label class="form-check-label" for="formCheck-4">Bicycle Rails<br></label></div>
