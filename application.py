@@ -8,7 +8,7 @@ Created on Mon Aug 26 14:37:18 2019
 
 # importing the dependences to run the application
 from flask import Flask,render_template,url_for
-from controllers.ModelController import CycleDB,ParkingDB,HotspotDB
+from controllers.ModelController import CycleDB,ParkingDB,HotspotDB,ToiletDB
 from controllers.QueryController import WanderingRoute
 import json
 from flask import request
@@ -48,6 +48,12 @@ def create_infra():
     return json.dumps(res)
     
     
+@app.route("/migrate_data_toilet",methods=['GET'])
+def create_infra_for_toilet():
+    res = []
+    print("Migrating cycle path data ....")
+    res.append(ToiletDB().migrate_data_to_db())
+    return json.dumps(res)
 
 @app.route("/clear_table_content",methods=['GET'])
 def migrate_data():

@@ -14,6 +14,7 @@ $(document).ready(function() {
   var parkingLocations = new Array();
   var drinkingLocations = new Array();
   var crashHotspots = new Array();
+  var toiletLocations = new Array()
   var geocoder = new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
         countries: 'au',
@@ -399,6 +400,20 @@ $(document).ready(function() {
                     })
                   })
                 }
+
+                if($('#formCheck-7').is(":checked")){
+                  toiletLocations = responseFromServer[4];
+                  toiletLocations.forEach((markers)=>{
+                    markers.features.forEach((marker)=>{
+                      var el = document.createElement('div');
+                      el.className = 'toilet-marker';
+    
+                      new mapboxgl.Marker(el)
+                      .setLngLat(marker.geometry.coordinates)
+                      .addTo(map);
+                    })
+                  })
+                }
                 });
               }).fail(function(err) {
                 console.log("error"+JSON.stringify(err))
@@ -481,6 +496,33 @@ $(document).ready(function() {
             }
           }
         })
+
+        $('#formCheck-7').on('change',()=>{
+          if($('#formCheck-7').is(":checked")){
+            if($(".mapboxgl-ctrl-geocoder--input").val() == ""){
+              alert("Please input a place name before you click GO!!")
+            }else{
+                toiletLocations = responseFromServer[4];
+                toiletLocations.forEach((markers)=>{
+                  if(Object.entries(markers).length != 0){
+                    markers.features.forEach((marker)=>{
+                      var el = document.createElement('div');
+                      el.className = 'toilet-marker';
+  
+                      new mapboxgl.Marker(el)
+                      .setLngLat(marker.geometry.coordinates)
+                      .addTo(map);
+                    })
+                  }
+                })
+            }
+          }else{
+            let markers = document.getElementsByClassName("toilet-marker");
+            for (let i = 0; i < markers.length; i++) {
+                markers[i].style.visibility = "hidden";
+            }
+          }
+        })
       } 
   });  
 });
@@ -538,8 +580,14 @@ return new Promise((resolve,reject)=> {
           responseList.push(processFountainData);
           prepareDataForCrashHotspots(response).then((processedCrashData)=>{
             responseList.push(processedCrashData);
-            processAccidentIndicators(responseList).then((processedResponseList)=>{
-              resolve(processedResponseList);
+            prepareDataForToiletLocations(response).then((processedToiletLocations)=>{
+              responseList.push(processedToiletLocations);
+              processAccidentIndicators(responseList).then((processedResponseList)=>{
+                resolve(processedResponseList);
+              },(err)=>{
+                console.log(err);
+                reject(err);
+              });
             },(err)=>{
               console.log(err);
               reject(err);
@@ -729,6 +777,48 @@ return new Promise((resolve,reject)=>{
       reject(error); 
     }
   }); 
+}
+
+function prepareDataForToiletLocations(response){
+  return new Promise((resolve,reject)=>{
+    try {
+        var multiPointData = new Array();
+    
+        response.forEach((element) => {
+          var overallObj = new Object();
+          var features = new Array();
+          if(element.toiletLocations.length == 0){
+            var crashData = new Object();
+            multiPointData.push(crashData);
+          }else{
+            element.toiletLocations.forEach((eachToil)=>{
+              var properties = new Object();
+              var geometry = new Object();
+              var innerObj = new Object();
+        
+              geometry.coordinates = eachToil.coordinates;
+              geometry.type = "Point";
+        
+              properties.title = "ToiletLocation";
+              properties.description = "CityOFMelbourne";
+        
+              innerObj.type = "Feature";
+              innerObj.geometry = geometry;
+              innerObj.properties = properties; 
+        
+              features.push(innerObj);
+            })
+            overallObj.type = "FeatureCollection";
+            overallObj.features = features;
+            multiPointData.push(overallObj);
+          }
+        });
+        resolve(multiPointData);
+      } catch (error) {
+        console.error(error);
+        reject(error); 
+      }
+    }); 
 }
 
 

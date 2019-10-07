@@ -98,6 +98,8 @@ class WanderingRoute:
                 response_dict["drinkingFountains"] = drinkingFountainLocations
                 cycle_crash_spots = self.getCrashHotspots(each[0])
                 response_dict["cycleCrashHotspots"] = cycle_crash_spots
+                toilet_locations = self.getToiletLocation(each[0])
+                response_dict["toiletLocations"] = toilet_locations
                 response_array.append(response_dict)
             return response_array
         else:
@@ -117,6 +119,8 @@ class WanderingRoute:
                 response_dict["drinkingFountains"] = drinkingFountainLocations
                 cycle_crash_spots = self.getCrashHotspots(each[1])
                 response_dict["cycleCrashHotspots"] = cycle_crash_spots
+                toilet_locations = self.getToiletLocation(each[1])
+                response_dict["toiletLocations"] = toilet_locations
                 response_array.append(response_dict)
             return response_array
             
@@ -196,7 +200,27 @@ class WanderingRoute:
     def get_nearest_location_ids(self,response):
         return response[0][0]
         
-    
+    def getToiletLocation(self,path_id):
+        query = """SELECT tl.*
+                    FROM public."ToiletLocation" tl INNER JOIN public."CyclePath" cp 
+                    ON ST_DWithin(tl.geom_location, cp.geom_path,0.01) where cp.id = %s limit 10;"""
+        self.cur.execute(query,[path_id])
+        records = self.cur.fetchall()
+        toilet_locations = []
+        if len(records) == 0:
+            return toilet_locations
+        for each in records:
+            toilDict = {}
+            toilLocation = []
+            toilDict["id"] = each[0]
+            toilDict["name"] = each[1]
+            toilDict["male"] = each[2]
+            toilDict["female"] = each[3]
+            toilLocation.append(each[4])
+            toilLocation.append(each[5])
+            toilDict["coordinates"] = toilLocation
+            toilet_locations.append(toilDict)
+        return toilet_locations
     
     def close_connection(self):
         self.conn.commit()
