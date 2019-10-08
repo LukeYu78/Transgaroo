@@ -20,13 +20,37 @@ app = Flask(__name__)
 def go_home():
     return render_template("index.html")
 
-@app.route("/about_us")
-def go_about_us():
-    return render_template("About.html")
+@app.route("/events")
+def events():
+    return render_template("Events.html")
 
 @app.route("/rules")
 def rules():
-    return render_template("Rules.html")
+    return render_template("Safety.html")
+
+@app.route("/equipment")
+def equipment():
+    return render_template("Equipment.html")
+
+@app.route("/signs")
+def signs():
+    return render_template("Signs.html")
+
+@app.route("/hand_signals")
+def hand_signs():
+    return render_template("Hand.html")
+
+@app.route("/lanes")
+def lanes():
+    return render_template("Lanes.html")
+
+@app.route("/speed")
+def speed():
+    return render_template("Speed.html")
+
+@app.route("/parking")
+def parking():
+    return render_template("Parking.html")
 
 @app.route("/contact")
 def contacts():

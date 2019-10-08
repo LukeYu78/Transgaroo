@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <title>MoveMelbI3</title>
+        <link rel="icon" type="image/png" sizes="325x323" href="../static/images/MoveMelb_LOGO.png">
+        <link rel="icon" type="image/png" sizes="325x323" href="../static/images/MoveMelb_LOGO.png">
+        <link rel="icon" type="image/png" sizes="325x323" href="../static/images/MoveMelb_LOGO.png">
+        <link rel="icon" type="image/png" sizes="325x323" href="../static/images/MoveMelb_LOGO.png">
+        <link rel="icon" type="image/png" sizes="325x323" href="../static/images/MoveMelb_LOGO.png">
+        <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Actor">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bree+Serif">
+        <link rel="stylesheet" href="../static/fonts/fontawesome-all.min.css">
+        <link rel="stylesheet" href="../static/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="../static/fonts/fontawesome5-overrides.min.css">
+        <link rel="stylesheet" href="../static/css/Article-List.css">
+        <link rel="stylesheet" href="../static/css/back-to-top-button.css">
+        <link rel="stylesheet" href="../static/css/breadcrumb.css">
+        <link rel="stylesheet" href="../static/css/Contact-Form-Clean.css">
+        <link rel="stylesheet" href="../static/css/Dark-NavBar-1.css">
+        <link rel="stylesheet" href="../static/css/Dark-NavBar-2.css">
+        <link rel="stylesheet" href="../static/css/Dark-NavBar.css">
+        <link rel="stylesheet" href="../static/css/Features-Boxed.css">
+        <link rel="stylesheet" href="../static/css/gradient-navbar-1.css">
+        <link rel="stylesheet" href="../static/css/gradient-navbar.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
+        <link rel="stylesheet" href="../static/css/main.css">
+        <link rel="stylesheet" href="../static/css/Navigation-Clean.css">
+        <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en',
+                    layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL,
+                    autoDisplay:false},
+                'google_translate_element');
+        }
+        </script>
+        <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+
+<body>
+    <div id="google_translate_element" class="col-md-12 text-right"></div>
+     <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button" style="height: 80px;background-color: #f4f4f4;color: #ffffff;font-family: 'Bree Serif', serif;">
+        <div class="container-fluid"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+            <div class="card"></div><a href="{{ url_for('go_home') }}"><img src="../static/images/icon.png" style="height: 70px;">
+                <ul class="nav navbar-nav ml-auto" style="background-color: #ffffff;filter: grayscale(66%);color: #241818;opacity: 1;">
+                    <li class="nav-item" role="presentation" href="{{ url_for('go_home') }}" style="font-size: 18px;background-color: #f4f4f4;"><a class="nav-link" style="color:#241818;" href="{{ url_for('go_home') }}"><i class="fa fa-home"></i> Home</a></li>
+                    <li class="nav-item" role="presentation" style="font-size: 18px;background-color: #f4f4f4;"><a class="nav-link" style="color:#241818;" href="{{ url_for('cycling_map') }}"><i class="far fa-map"></i> Cycling Map</a></li>
+                    <li class="nav-item" role="presentation" style="background-color: #f4f4f4;"><a class="nav-link" style="color: #241818;font-size: 18px;" href="{{ url_for('rules') }}"><i class="fa fa-book"></i> Safety Tips</a></li>
+                    <li class="nav-item" role="presentation" style="background-color: #f4f4f4;"><a class="nav-link" style="color:#241818;font-size: 18px;" href="{{ url_for('events') }}"><i class="fa fa-newspaper-o"></i> Cycling Events</a></li>
+                    <li class="nav-item" role="presentation" style="font-size: 18px;"></li>
+                    <li class="nav-item" role="presentation"></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="text-center" style="font-family: 'Bree Serif', serif;background-color: #bfc2c5bf;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div style="text-align: center;"></div><div class="text-left" style="font-size: 19px;">
+    <i class="fa fa-home"></i>
+    <span><a href="{{ url_for('go_home') }}" style="color: black;">  Home </a></span>
+    <span><i class="fa fa-angle-double-right"></i></span>
+    <span><a href="{{ url_for('rules') }}" style="color: black;">  Safety Tips </a></span>
+    <span><i class="fa fa-angle-double-right"></i></span>
+    <span><a href="{{ url_for('parking') }}" style="color: black;"> Parking Rules </a></span>
+</div></div>
+                <div class="col">
+                    <p style="font-size: 32px;">Parking Rules<br></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="features-boxed">
+        <div class="container text-center">
+            <div class="intro"></div>
+            <div class="row justify-content-center features">
+				<img src="../static/images/Parking.jpg" style="height: 360px;">
+                <div class="col">
+					<h6 align="left">Parking in public area:</h6>
+					<p align="left">You can park your bike on a footpath as long as it’s not in the way and you are not breaking any local laws. If you are allowed to park, use a bike rack or rail if there is one available. But you cannot park at all where there is a ‘No Parking’ sign or similar.</p>
+					<h6 align="left">Taking your bike on public transport:</h6>
+					<p align="left">You can take a regular bike on the train, but you can’t board at the first door of the front carriage. The first door is for people using wheelchairs and mobility scooters. If you have a folding bike, you can board at any door. You must not block the doorway of the train or ride your bike on the platform.</p>
+					<p align="left">Taking a bike on a bus or tram is not allowed unless it is a folding bike.</p>
+        </div>
+        </div>
+    </div>
+    <div style="background-color: #d6d6d6;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <p>&nbsp;©Copyright 2019<br></p>
+                    <p>All Rights Reserved By&nbsp;Transgaroo<br></p>
+                </div>
+                <div class="col">
+                    <p style="filter: grayscale(0%);font-size: 18px;font-weight: bold;">MoveMelb</p>
+                    <p style="filter: grayscale(0%);">The MoveMelb project help international inexperienced people cyling safely in Melbourne City.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/back-to-top-button.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
+    <script src="../static/js/printThis.js"></script>
+    <script src="../static/js/theme.js"></script>
+</body>
+
+</html>
