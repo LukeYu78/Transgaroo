@@ -60,8 +60,6 @@ def contacts():
 def cycling_map():
     return render_template("CycleMap.html")
 
-
-
 @app.route("/migrate_data",methods=['GET'])
 def create_infra():
     res = []
