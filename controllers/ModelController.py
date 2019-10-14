@@ -80,7 +80,7 @@ class ParkingDB:
     def read_data(self):
         cycle_park_data = pd.read_csv("./data/Cycle_Parking_spots.csv")
         required_columns_df = cycle_park_data[['GIS_ID','ASSET_TYPE','CoordinateLocation']]
-        required_columns_df = required_columns_df[required_columns_df['ASSET_TYPE'] == 'Bicycle Rails']
+        required_columns_df = required_columns_df[required_columns_df['ASSET_TYPE'].isin(['Bicycle Rails','Drinking Fountain'])]
         lat = []
         long = []
         coordlocation = []

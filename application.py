@@ -69,23 +69,18 @@ def create_infra():
     res.append(CycleDB().migrate_data_to_db())
     res.append(ParkingDB().migrate_data_to_db())
     res.append(HotspotDB().migrate_data_to_db())
-    return json.dumps(res)
-    
-    
-@app.route("/migrate_data_toilet",methods=['GET'])
-def create_infra_for_toilet():
-    res = []
-    print("Migrating cycle path data ....")
     res.append(ToiletDB().migrate_data_to_db())
     return json.dumps(res)
-
+    
+    
 @app.route("/clear_table_content",methods=['GET'])
-def migrate_data():
+def clear_data():
     res = []
     print("Clearing all the content cycle path data ....")
     res.append(CycleDB().clear_table())
     res.append(ParkingDB().clear_table())
     res.append(HotspotDB().clear_table())
+    res.append(ToiletDB().clear_table())
     return json.dumps(res)
 
 

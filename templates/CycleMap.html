@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Cycling Map</title>
+    <title>Path Finder</title>
     <link rel="icon" type="image/png" sizes="325x323" href="../static/images/MoveMelb_LOGO.png">
     <link rel="icon" type="image/png" sizes="325x323" href="../static/images/MoveMelb_LOGO.png">
     <link rel="icon" type="image/png" sizes="325x323" href="../static/images/MoveMelb_LOGO.png">
@@ -59,7 +59,7 @@
                 <div class="card"></div><a href="{{ url_for('go_home') }}"><img src="../static/images/icon.png" style="height: 70px;">
                     <ul class="nav navbar-nav ml-auto" style="background-color: #ffffff;filter: grayscale(66%);color: #241818;opacity: 1;">
                         <li class="nav-item" role="presentation" href="{{ url_for('go_home') }}" style="font-size: 18px;background-color: #f4f4f4;"><a class="nav-link" style="color:#241818;" href="{{ url_for('go_home') }}"><i class="fa fa-home"></i> Home</a></li>
-                        <li class="nav-item" role="presentation" style="font-size: 18px;background-color: #f4f4f4;"><a class="nav-link" style="color:#241818;" href="{{ url_for('cycling_map') }}"><i class="far fa-map"></i> Cycling Map</a></li>
+                        <li class="nav-item" role="presentation" style="font-size: 18px;background-color: #f4f4f4;"><a class="nav-link" style="color:#241818;" href="{{ url_for('cycling_map') }}"><i class="far fa-map"></i> Path Finder</a></li>
                         <li class="nav-item" role="presentation" style="background-color: #f4f4f4;"><a class="nav-link" style="color: #241818;font-size: 18px;" href="{{ url_for('rules') }}"><i class="fa fa-book"></i> Safety Tips</a></li>
                         <li class="nav-item" role="presentation" style="background-color: #f4f4f4;"><a class="nav-link" style="color:#241818;font-size: 18px;" href="{{ url_for('events') }}"><i class="fa fa-newspaper-o"></i> Cycling Events</a></li>
                         <li class="nav-item" role="presentation" style="font-size: 18px;"></li>
@@ -76,10 +76,10 @@
             <i class="fa fa-home"></i>
             <span><a href="{{ url_for('go_home') }}" style="color: black;">  Home </a></span>
             <span><i class="fa fa-angle-double-right"></i></span>
-            <span><a href="{{ url_for('cycling_map') }}" style="color: black;">  Cycling Map </a></span>
+            <span><a href="{{ url_for('cycling_map') }}" style="color: black;">  Path Finder </a></span>
         </div></div>
                         <div class="col">
-                            <p style="font-size: 32px;">Cycling Map<br></p></div>
+                            <p style="font-size: 32px;">Path Finder<br></p></div>
                     </div>
                 </div>
             </div>
