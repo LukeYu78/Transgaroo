@@ -49,7 +49,7 @@
                 <div class="card"></div><a href="{{ url_for('go_home') }}"><img src="../static/images/icon.png" style="height: 70px;">
                 <ul class="nav navbar-nav ml-auto" style="background-color: #ffffff;filter: grayscale(66%);color: #241818;opacity: 1;">
                     <li class="nav-item" role="presentation" href="{{ url_for('go_home') }}" style="font-size: 18px;background-color: #f4f4f4;"><a class="nav-link" style="color:#241818;" href="{{ url_for('go_home') }}"><i class="fa fa-home"></i> Home</a></li>
-                    <li class="nav-item" role="presentation" style="font-size: 18px;background-color: #f4f4f4;"><a class="nav-link" style="color:#241818;" href="{{ url_for('cycling_map') }}"><i class="far fa-map"></i> Cycling Map</a></li>
+                    <li class="nav-item" role="presentation" style="font-size: 18px;background-color: #f4f4f4;"><a class="nav-link" style="color:#241818;" href="{{ url_for('cycling_map') }}"><i class="far fa-map"></i> Path Finder</a></li>
                     <li class="nav-item" role="presentation" style="background-color: #f4f4f4;"><a class="nav-link" style="color: #241818;font-size: 18px;" href="{{ url_for('rules') }}"><i class="fa fa-book"></i> Safety Tips</a></li>
                     <li class="nav-item" role="presentation" style="background-color: #f4f4f4;"><a class="nav-link" style="color:#241818;font-size: 18px;" href="{{ url_for('events') }}"><i class="fa fa-newspaper-o"></i> Cycling Events</a></li>
                     <li class="nav-item" role="presentation" style="font-size: 18px;"></li>
@@ -59,30 +59,68 @@
         </div>
     </nav>
     <section class="portfolio-block block-intro" style="height: 687px;background-image: url(&quot;../static/images/home_page.jpg&quot;);background-position: center;background-size: cover;">
-        <p class="text-center" style="width: 815px;font-family: 'Bree Serif', serif;margin: -81px 0px 30px;color: rgb(0,0,0);font-size: 26px;background-color: #b6d2ed;">New to City?<br>Inexperienced Cyclist?<br>Worried About Safety?<br>Want find the Park locations?<br>Want find Public Toilets?<br>Want be aware of Cycle Crash Locations?<br>MoveMelb is here to help you.</p>
-        <!-- <p class="text-center" style="width: 350px;font-family: 'Bree Serif', serif;margin: 10px 25px 30px;color: rgb(0,0,0);font-size: 26px;background-color: #b6d2ed;">Reduce traffic congestion?<br></p>
-        <p class="text-center" style="width: 350px;font-family: 'Bree Serif', serif;margin: 10px 25px 30px;color: rgb(0,0,0);font-size: 26px;background-color: #b6d2ed;">Try to start cycling?<br></p>
-        <p class="text-center" style="width: 350px;font-family: 'Bree Serif', serif;margin: 10px 25px 30px;color: rgb(0,0,0);font-size: 26px;background-color: #b6d2ed;">Want a safe ride?<br></p>
-        <p class="text-center" style="width: 350px;font-family: 'Bree Serif', serif;margin: 10px 25px 30px;color: rgb(0,0,0);font-size: 26px;background-color: #b6d2ed;">Let us help you.<br></p> -->
+        <p class="text-center" style="width: 815px;font-family: 'Bree Serif', serif;margin: 20px 300px 0px;font-size: 35px;background-color: #afcded9e;">Helping Recently Moved International Inexperienced Cyclists Feel Safer Riding A Bicycle In The City Of Melbourne<br></p>
     </section>
-    <section class="text-center portfolio-block skills" style="background-color: #ffffff;">
+    <section id="section04" class="demo">
+        <a href="#section05"><span></span>Find Out More Here</a>
+      </section>
+    <section id="section05" class="text-center portfolio-block skills" style="background-color: #ffffff;">
+            <div class="container" style="font-family: 'Bree Serif', serif;">
+                    <div class="heading"></div>
+                </div>
+                <div class="container">
+                    <div class="intro" style="margin-bottom:50px;">
+                        <h2 class="text-center"><strong>WHAT WE OFFER?</strong><br></h2>
+                    </div>
+                    <div class="row articles">
+                        <div class="col-sm-6 col-md-4 item"><a src="./static/images/icons8-book-80.png" href="{{ url_for('cycling_map') }}"><img class="img-fluid" src="./static/images/icons8-bicycle-80.png"></a>
+                            <h3 class="name">Cycling Map</h3>
+                            <p class="description">We will provide the Cycling route for the Cyclist and Bicycle Lock Rail.</p><a class="action" href="{{ url_for('cycling_map') }}"><i class="fa fa-arrow-circle-right" href="Cycling.html"></i></a></div>
+                        <div class="col-sm-6 col-md-4 item"><a href="{{ url_for('rules') }}"><img class="img-fluid" src="./static/images/icons8-book-80.png"></a>
+                            <h3 class="name">Safety Tips</h3>
+                            <p class="description">We will provide the some animations of the bicycle rules.</p><a class="action" href="{{ url_for('rules') }}"><i class="fa fa-arrow-circle-right"></i></a></div>
+                        <div class="col-sm-6 col-md-4 item"><a href="{{ url_for('events') }}"><img class="img-fluid" src="./static/images/icons8-save-80.png"></a>
+                            <h3 class="name">Save the Plan</h3>
+                            <p class="description">After you finish the plan,&nbsp;save your cyling plan for your future and print it or keep it on your phone.</p><a class="action" href="{{ url_for('events') }}"><i class="fa fa-arrow-circle-right"></i></a></div>
+                    </div>
+                </div>
+    </section>
+    <section id="section06" class="text-center portfolio-block skills" style="background-color: #ffffff;">
         <div class="container" style="font-family: 'Bree Serif', serif;">
             <div class="heading"></div>
         </div>
         <div class="container">
             <div class="intro">
-                <h2 class="text-center"><strong>WHAT WE OFFER?</strong><br></h2>
+                <h2 class="text-center" style="margin-bottom: 50px"><strong>FOSTERING A SAFE CYCLING ENVIRONMENT</strong><br></h2>
+                <p style= "font-size: 18px;text-align: center;">
+                    At MoveMelb we believe in providing safety to the International Cyclists.<br>
+                    We provide features and facilities that will make you aware of the Cycling paths in Melbourne.<br>
+                    Our Objective is to ensure that you have a pleasant Cycling Experience.<br> 
+                </p>
             </div>
-            <div class="row articles">
-                <div class="col-sm-6 col-md-4 item"><a src="../static/images/icons8-book-80.png" href="{{ url_for('cycling_map') }}"><img class="img-fluid" src="../static/images/icons8-bicycle-80.png"></a>
-                    <h3 class="name">Cycling Map</h3>
-                    <p class="description">We will provide the Cycling route for the Cyclist and Bicycle Lock Rail.</p><a class="action" href="{{ url_for('cycling_map') }}"><i class="fa fa-arrow-circle-right" href="{{ url_for('cycling_map') }}"></i></a></div>
-                <div class="col-sm-6 col-md-4 item"><a href="{{ url_for('rules') }}"><img class="img-fluid" src="../static/images/icons8-book-80.png"></a>
-                    <h3 class="name">Safety Tips</h3>
-                    <p class="description">We will provide the some animations of the bicycle rules.</p><a class="action" href="{{ url_for('rules') }}"><i class="fa fa-arrow-circle-right"></i></a></div>
-                <div class="col-sm-6 col-md-4 item"><a href="{{ url_for('events') }}"><img class="img-fluid" src="../static/images/icons8-save-80.png"></a>
-                    <h3 class="name">Cycling Events</h3>
-                    <p class="description">Once you are comfortable riding in the City, you can explore Cycling Events around you</p><a class="action" href="{{ url_for('events') }}"><i class="fa fa-arrow-circle-right"></i></a></div>
+            <div id="about-us" style="margin-top:50px;">
+                    <div class="left">
+                        <img class="img-fluid" style="height: 130px;"src="../static/images/bike.png">
+                        <h3 class="name">Cycling Paths</h3>
+                        <p class="description">We provide Safe cycling Paths from the location of your choice in Melbourne.</p></div>
+                    <div class = "right">
+                        <img class="img-fluid" style="height: 130px;"src="../static/images/caution.png">
+                        <h3 class="name">Safety Indicators</h3>
+                        <p class="description">We caution the cyclists by providing path safety indicators and crash locations.</p>
+                    </div>
+                </div>
+                <div id="about-us" style="margin-top:50px;">
+                        <div class="left">
+                            <img class="img-fluid" style="height: 130px;" src="../static/images/faucet.jpg">
+                            <h3 class="name">Public Drinking Faucets</h3>
+                            <p class="description">We provide the public drinking fountain locations so that you have a pleasant ride.</p>
+                        </div>
+                        <div class="right">
+                            <img class="img-fluid" style="height: 130px;" src="../static/images/restroom.png">
+                            <h3 class="name">Public Toilets</h3>
+                            <p class="description">We provide all the public toilet locations along the cycling paths.</p>
+                        </div>
+                </div>
             </div>
         </div>
     </section>
