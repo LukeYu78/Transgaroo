@@ -151,10 +151,10 @@ input[type="checkbox"]{
 }
 
 #print-text{
-  padding: 6px;
+  padding: 0px;
   margin-top: -12px;
   font-family: 'Bree Serif', serif;
-  font-size: 25px;
+  font-size: 20px;
 }
 
 .col-md-4{
@@ -300,7 +300,7 @@ input[type="checkbox"]{
   color: #212529;
   font: normal 400 20px/1 'Bree Serif', serif;
   text-decoration: none;
-  background-color: #f3f1f1;
+  background-color: #ffffff;
   transition: opacity .3s;
   transition-timing-function: ease;
   transition-delay: 3s;
