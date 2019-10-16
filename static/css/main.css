@@ -381,4 +381,5 @@ input[type="checkbox"]{
   height: 250px;
   background: #ffffff;
   float: right;
+  margin-right: -20px;
 }
