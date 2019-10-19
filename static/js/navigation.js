@@ -236,13 +236,15 @@ $(document).ready(function() {
   $('#downloadLink').on('click',() =>{
     // var img = map.getCanvas().toDataURL('../static/images/')
     // $('#downloadLink').prop("href",img);
-
+    $('#map').css({'overflow':'hidden !important'})
     html2canvas($('#map')[0], {
-      useCORS: true,
-      allowTaint: true
+       useCORS: true,
+        allowTaint: true,
+        height:500,
+        width:926
     })
     .then(function(canvas) {
-      var img = canvas.toDataURL('image/png');
+      var img = canvas.toDataURL('../static/images/');
       var link = document.createElement('a');
       link.href = img;
       link.download = "map.png";
