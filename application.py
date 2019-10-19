@@ -25,11 +25,11 @@ def page_not_found(e):
 def go_home():
     return render_template("index.html")
 
-@app.route("/events")
+@app.route("/cycling-events")
 def events():
     return render_template("Events.html")
 
-@app.route("/rules")
+@app.route("/safety-tips")
 def rules():
     return render_template("Safety.html")
 
@@ -57,11 +57,7 @@ def speed():
 def parking():
     return render_template("Parking.html")
 
-@app.route("/contact")
-def contacts():
-    return render_template("Contact.html")
-
-@app.route("/cycling_map")
+@app.route("/path-finder")
 def cycling_map():
     return render_template("CycleMap.html")
 

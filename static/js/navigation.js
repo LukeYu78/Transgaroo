@@ -236,7 +236,7 @@ $(document).ready(function() {
   $('#downloadLink').on('click',() =>{
     // var img = map.getCanvas().toDataURL('../static/images/')
     // $('#downloadLink').prop("href",img);
-    $('#map').css({'overflow':'hidden !important'})
+    
     html2canvas($('#map')[0], {
        useCORS: true,
         allowTaint: true,
