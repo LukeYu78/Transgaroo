@@ -14,7 +14,7 @@ class WanderingRoute:
     conn = None
     
     def __init__(self):
-       self.conn = psycopg2.connect("host=localhost dbname=IE-database user=postgres port=5433")
+       self.conn = psycopg2.connect("host=localhost dbname=IE-database user=postgres")
        self.cur = self.conn.cursor()
        self.isWandering = True
         
