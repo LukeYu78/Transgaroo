@@ -371,7 +371,6 @@ input[type="checkbox"]{
   background-color: #345386;
   color: white;
   font-size: 21px;
-  padding: 12px 24px;
   border: none;
   cursor: pointer;
   border-radius: 5px;
@@ -401,4 +400,15 @@ input[type="checkbox"]{
   background: #ffffff;
   float: right;
   margin-right: -20px;
+}
+
+.centered {
+  position: absolute;
+  top: 12%;
+  left: 30%;
+  font-family: 'Bree Serif', serif;
+  transform: translate(-10%, -50%);
+  font-size: 32px;
+  background-color: #afcded9e;
+  width: 50%;
 }
