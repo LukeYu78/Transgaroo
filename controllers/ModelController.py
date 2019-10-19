@@ -80,7 +80,7 @@ class ParkingDB:
     def read_data(self):
         cycle_park_data = pd.read_csv("./data/Cycle_Parking_spots.csv")
         required_columns_df = cycle_park_data[['GIS_ID','ASSET_TYPE','CoordinateLocation']]
-        required_columns_df = required_columns_df[required_columns_df['ASSET_TYPE'] == 'Bicycle Rails']
+        required_columns_df = required_columns_df[required_columns_df['ASSET_TYPE'].isin(['Bicycle Rails','Drinking Fountain'])]
         lat = []
         long = []
         coordlocation = []
@@ -173,6 +173,70 @@ class HotspotDB:
         self.conn.commit()
         self.cur.close()
         self.conn.close()
+        
+        
+        
+        
+class ToiletDB:
+    cur = None
+    conn = None
+    
+    def __init__(self):
+        self.conn = psycopg2.connect("host=localhost dbname=IE-database user=postgres")
+        self.cur = self.conn.cursor()
+        
+        
+    def migrate_data_to_db(self):
+        try:            
+            data_to_migrate = self.read_data()
+                
+            query = """
+           INSERT INTO public."ToiletLocation"(
+	id, name, male, female, lon, lat, geom_location)
+	VALUES (%s, %s, %s, %s, %s, %s, ST_GeomFromText(%s,4326));"""
+    
+            self.cur.executemany(query,data_to_migrate)
+            self.close_connection()
+            return {"status":"success"}
+        except:
+            return {"status":"fail","code":"500"}
+        
+
+    def read_data(self):
+        df = pd.read_csv("./data/Public_toilets.csv")
+        req_df = df[["name","male","female","lat","lon"]]
+        coordlocation = []
+        req_df['geom_location'] = np.nan
+
+        
+        for index,row in req_df.iterrows():
+            coordlocation.append("POINT(%s %s)" % (row["lon"],row["lat"]))
+        
+        req_df['geom_location']  = coordlocation
+        req_df["id"] = np.arange(len(req_df))
+        tuple_cycle_park_data = list(tuple(zip(req_df["id"],req_df["name"],req_df["male"],req_df["female"],req_df["lon"],req_df["lat"],req_df['geom_location'])))
+        return tuple_cycle_park_data
+    
+    
+    def clear_table(self):
+        try: 
+            query = 'DELETE FROM public."ToiletLocation";'
+            self.cur.execute(query)
+            self.close_connection()
+            return {"status":"success"}
+        except:
+            return {"status":"fail","code":"500"}
+
+        
+        
+    def close_connection(self):
+        self.conn.commit()
+        self.cur.close()
+        self.conn.close()
+        
+
+        
+
 
 
 
