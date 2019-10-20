@@ -27,7 +27,7 @@ def go_home():
 
 @app.route("/cycling-events")
 def events():
-    return render_template("Events1.html")
+    return render_template("Events.html")
 
 @app.route("/safety-tips")
 def rules():
