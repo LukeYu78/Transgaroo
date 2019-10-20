@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>MoveMelb - Cycling Events</title>
+    <link rel="icon" type="image/png" sizes="325x323" href="../static/images/MoveMelb_LOGO.png">
+    <link rel="icon" type="image/png" sizes="325x323" href="../static/images/MoveMelb_LOGO.png">
+    <link rel="icon" type="image/png" sizes="325x323" href="../static/images/MoveMelb_LOGO.png">
+    <link rel="icon" type="image/png" sizes="325x323" href="../static/images/MoveMelb_LOGO.png">
+    <link rel="icon" type="image/png" sizes="325x323" href="../static/images/MoveMelb_LOGO.png">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Actor">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bree+Serif">
+    <link rel="stylesheet" href="../static/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="../static/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="../static/css/Article-List.css">
+    <link rel="stylesheet" href="../static/css/back-to-top-button.css">
+    <link rel="stylesheet" href="../static/css/breadcrumb.css">
+    <link rel="stylesheet" href="../static/css/Contact-Form-Clean.css">
+    <link rel="stylesheet" href="../static/css/Dark-NavBar-1.css">
+    <link rel="stylesheet" href="../static/css/Dark-NavBar-2.css">
+    <link rel="stylesheet" href="../static/css/Dark-NavBar.css">
+    <link rel="stylesheet" href="../static/css/Features-Boxed.css">
+    <link rel="stylesheet" href="../static/css/gradient-navbar-1.css">
+    <link rel="stylesheet" href="../static/css/gradient-navbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
+    <link rel="stylesheet" href="../static/css/Important-Highlighted-Event.css">
+    <link rel="stylesheet" href="../static/css/main.css">
+    <link rel="stylesheet" href="../static/css/Navigation-Clean.css">
+	<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'en',
+                layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL,
+                autoDisplay:false},
+            'google_translate_element');
+    }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+
+<body>
+  <div id="google_translate_element" class="col-md-12 text-right"></div>
+  <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button" style="height: 80px;background-color: #f4f4f4;color: #ffffff;font-family: 'Bree Serif', serif;">
+      <div class="container-fluid"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+          <div class="collapse navbar-collapse" id="navcol-1">
+                  <div class="card"></div><a href="{{ url_for('go_home') }}"><img src="../static/images/icon.png" style="height: 70px;">
+                      <ul class="nav navbar-nav ml-auto" style="background-color: #ffffff;filter: grayscale(66%);color: #241818;opacity: 1;">
+                          <li class="nav-item" role="presentation" href="{{ url_for('go_home') }}" style="font-size: 18px;background-color: #f4f4f4;"><a class="nav-link" style="color:#241818;" href="{{ url_for('go_home') }}"><i class="fa fa-home"></i> Home</a></li>
+                          <li class="nav-item" role="presentation" style="font-size: 18px;background-color: #f4f4f4;"><a class="nav-link" style="color:#241818;" href="{{ url_for('cycling_map') }}"><i class="far fa-map"></i> Path Finder</a></li>
+                          <li class="nav-item" role="presentation" style="background-color: #f4f4f4;"><a class="nav-link" style="color: #241818;font-size: 18px;" href="{{ url_for('rules') }}"><i class="fa fa-book"></i> Safety Tips</a></li>
+                          <li class="nav-item" role="presentation" style="background-color: #f4f4f4;"><a class="nav-link" style="color:#241818;font-size: 18px;" href="{{ url_for('events') }}"><i class="fa fa-newspaper-o"></i>Cycling Events</a></li>
+                          <li class="nav-item" role="presentation" style="font-size: 18px;"></li>
+                          <li class="nav-item" role="presentation"></li>
+                      </ul>
+                  </div>
+      </div>
+    </nav>
+    <div class="text-center" style="font-family: 'Bree Serif', serif;background-color: #bfc2c5bf;">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-12">
+                  <div style="text-align: center;"></div><div class="text-left" style="font-size: 19px;">
+  <i class="fa fa-home"></i>
+  <span><a href="{{ url_for('go_home') }}" style="color: black;">  Home </a></span>
+  <span><i class="fa fa-angle-double-right"></i></span>
+  <span><a href="{{ url_for('events') }}" style="color: black;"> Cycling Events </a></span>
+  
+</div></div>
+                <div class="col">
+                    <p style="font-size: 32px;color: rgb(0,0,0);">Events</p>
+                </div>
+            </div>
+            <div class="row text-left">
+                <div class="col-md-12">
+                    <div style="text-align: center;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="features-boxed">
+        <div class="container text-center">
+			<div class = "row justify-content-center features">
+				<div class="row text-center">
+
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <img class="card-img-top" src="../static/images/event1.jpg" alt="">
+          <div class="card-body">
+            <h4 class="card-title">Great Vic Bike Ride</h4>
+			  <p class="card-text">Friday 22 November – Sunday 1 December 2019</p>
+            <p class="card-text" style="color: black">Choose from our 5 day and 10 day ride options as we pedal from from the Limestone Coast to the Great Ocean Road in 2019.</p>
+          </div>
+          <div class="card-footer">
+            <a href="https://www.bicyclenetwork.com.au/rides-and-events/great-victorian-bike-ride/" class="btn btn-primary">Find Out More!</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <img class="card-img-top" src="../static/images/event2.jpg" alt="">
+          <div class="card-body">
+            <h4 class="card-title">Gravel Grit Laguna</h4>
+            <p class="card-text">Saturday 26 – Sunday 27 October 2019</p>
+            <p class="card-text" style="color: black">Gravel Grit Laguna defiantly isn't your average Sunday bunchie. Escape the hustle and bustle of the big smoke, with an adventure packed weekend away with mates, beers and good times.</p>
+          </div>
+          <div class="card-footer">
+            <a href="https://www.bicyclenetwork.com.au/rides-and-events/gravel-grit-laguna/" class="btn btn-primary">Find Out More!</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <img class="card-img-top" src="../static/images/event3.jpg" alt="">
+          <div class="card-body">
+            <h4 class="card-title">Peaks Challenge</h4>
+            <p class="card-text">Sunday 8 March 2020</p>
+            <p class="card-text" style="color: black">With 235 kilometres and more than 4,000 metres of climbing, Peaks Challenge is the ultimate personal challenge. A never-ending journey in the pursuit of up.</p>
+          </div>
+          <div class="card-footer">
+            <a href="https://www.bicyclenetwork.com.au/rides-and-events/peaks-challenge/" class="btn btn-primary">Find Out More!</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <img class="card-img-top" src="../static/images/event4.jpg" alt="">
+          <div class="card-body">
+            <h4 class="card-title">Newcrest Orange Challenge</h4>
+            <p class="card-text">Sunday 22 March 2020</p>
+            <p class="card-text" style="color: black">Test your legs on the 70km, 100km or 170km routes among the pinchy climbs, rough roads and beautiful surroundings at this hidden gem of NSW cycling.</p>
+          </div>
+          <div class="card-footer">
+            <a href="https://www.bicyclenetwork.com.au/rides-and-events/newcrest-orange-challenge/" class="btn btn-primary">Find Out More!</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+			</div>
+		
+			<div class = "row justify-content-center features">
+				<div class="row text-center">
+
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <img class="card-img-top" src="../static/images/event6.jpg" alt="">
+          <div class="card-body">
+            <h4 class="card-title">Ride2School</h4>
+            <p class="card-text">Sunday 22 March 2020 National Ride2School Day</p>
+            <p class="card-text" style="color: black">Bicycle Network’s Ride2School program supports thousands of schools across Australia to promote and develop physical activity.</p>
+          </div>
+          <div class="card-footer">
+            <a href="https://www.bicyclenetwork.com.au/rides-and-events/ride2school/" class="btn btn-primary">Find Out More!</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <img class="card-img-top" src="../static/images/event5.jpg" alt="">
+          <div class="card-body">
+            <h4 class="card-title">Annual Members Night</h4>
+            <p class="card-text">Wednesday 30 October 2020</p>
+            <p class="card-text" style="color: black">Our Annual Members Night is our turn to say thank you to all our members for their contribution to Bicycle Network.</p>
+          </div>
+          <div class="card-footer">
+            <a href="https://www.bicyclenetwork.com.au/rides-and-events/annual-members-night/" class="btn btn-primary">Find Out More!</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <img class="card-img-top" src="../static/images/event7.jpg" alt="">
+          <div class="card-body">
+            <h4 class="card-title">Ride2Work</h4>
+            <p class="card-text">Wednesday 16 October 2019 National Ride2Work Day</p>
+            <p class="card-text" style="color: black">Ride2Work encourages Australians to commute by bike and helps workplaces make it easier for workers to ride.</p>
+          </div>
+          <div class="card-footer">
+            <a href="https://www.bicyclenetwork.com.au/rides-and-events/ride2work/" class="btn btn-primary">Find Out More!</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <img class="card-img-top" src="../static/images/event8.jpg" alt="">
+          <div class="card-body">
+           <h4 class="card-title">Member's Pedals</h4>
+           <p class="card-text">Saturday 17 August 2020</p>
+            <p class="card-text" style="color: black">Bicycle Network members are invited on our monthly social rides to meet the team and ride with like-minded people.</p>
+          </div>
+          <div class="card-footer">
+            <a href="https://www.bicyclenetwork.com.au/rides-and-events/members-pedal/" class="btn btn-primary">Find Out More!</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+			</div>
+            
+        </div>
+    </div>
+    <div style="background-color: #d6d6d6;">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-4">
+                  <p>&nbsp;©Copyright 2019<br></p>
+                  <p>All Rights Reserved By&nbsp;Transgaroo<br></p>
+              </div>
+              <div class="col">
+                  <p style="filter: grayscale(0%);font-size: 18px;font-weight: bold;">MoveMelb</p>
+                  <p style="filter: grayscale(0%);">The MoveMelb project help international inexperienced people cyling safely in Melbourne City.</p>
+              </div>
+          </div>
+      </div>
+  </div>
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/back-to-top-button.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
+    <script src="../static/js/printThis.js"></script>
+    <script src="../static/js/theme.js"></script>
+</body>
+
+</html>
