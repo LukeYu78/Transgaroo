@@ -38,6 +38,27 @@
             'google_translate_element');
     }
     </script>
+    <script type="text/javascript">
+        function password() {
+        var testV = 1;
+        var pass1 = prompt('Please enter the password','');
+        while (testV < 3) {
+        if (!pass1)
+        history.go(-1);
+        if (pass1 == "transgaroo") {//defaultPassword: transgaroo
+        alert('Welcome to movemelb!');
+        break;
+        }
+        testV+=1;
+        var pass1 =
+        prompt('Password error, please retype!');
+        }
+        if (pass1!="password" & testV ==3)
+        history.go(-1);
+        return " ";
+        }
+        document.write(password());
+        </script>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
 
